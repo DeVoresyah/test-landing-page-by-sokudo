@@ -40,7 +40,7 @@
 <ProgramsSection />
 <AchievementsSection />
 
-<Section id="galeri" tone="default" spacing="md">
+<Section id="galeri" tone="muted" spacing="md">
 	<SectionHeading
 		eyebrow="Galeri"
 		title="Cuplikan kehidupan di {site.shortName}"
@@ -51,7 +51,7 @@
 	</div>
 </Section>
 
-<Section id="tur-virtual" tone="muted" spacing="md">
+<Section id="tur-virtual" tone="default" spacing="md">
 	<div class="grid items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-14">
 		<div>
 			<SectionHeading
@@ -104,7 +104,7 @@
 	</div>
 </Section>
 
-<Section id="faq" tone="default">
+<Section id="faq" tone="muted">
 	<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
 		<SectionHeading
 			eyebrow="Pertanyaan Umum"
@@ -129,7 +129,7 @@
 	</div>
 </Section>
 
-<Section id="kontak" tone="muted">
+<Section id="kontak" tone="default">
 	<SectionHeading
 		eyebrow="Kontak"
 		title="Datang berkunjung atau hubungi kami"
@@ -302,7 +302,7 @@
 	</div>
 </Section>
 
-<Section id="pendaftaran" tone="default" spacing="md">
+<Section id="pendaftaran" tone="muted" spacing="md">
 	<div
 		class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-700 px-6 py-14 text-white shadow-xl shadow-primary-900/20 sm:px-12 sm:py-16 lg:px-16 lg:py-20"
 	>
