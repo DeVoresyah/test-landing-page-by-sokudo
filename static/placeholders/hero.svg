@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Suasana belajar di SMA Harapan Bangsa">
+	<defs>
+		<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#dbeafe" />
+			<stop offset="55%" stop-color="#a7f3d0" />
+			<stop offset="100%" stop-color="#6ee7b7" />
+		</linearGradient>
+		<linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#10b981" />
+			<stop offset="100%" stop-color="#047857" />
+		</linearGradient>
+		<linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0%" stop-color="#34d399" />
+			<stop offset="100%" stop-color="#059669" />
+		</linearGradient>
+		<radialGradient id="sun" cx="50%" cy="50%" r="50%">
+			<stop offset="0%" stop-color="#fef3c7" stop-opacity="0.9" />
+			<stop offset="100%" stop-color="#fde68a" stop-opacity="0" />
+		</radialGradient>
+	</defs>
+	<rect width="1600" height="1000" fill="url(#sky)" />
+	<circle cx="1280" cy="240" r="220" fill="url(#sun)" />
+	<circle cx="1280" cy="240" r="80" fill="#fef9c3" opacity="0.85" />
+	<!-- distant hills -->
+	<path d="M0 640 C 220 540 360 660 560 600 C 760 540 900 660 1100 600 C 1300 540 1440 660 1600 600 L 1600 1000 L 0 1000 Z" fill="url(#hill2)" opacity="0.55" />
+	<!-- school building -->
+	<g transform="translate(540 460)">
+		<rect x="0" y="80" width="520" height="240" fill="#f8fafc" stroke="#1e293b" stroke-width="3" rx="6" />
+		<polygon points="-30,80 260,-20 550,80" fill="#1d4ed8" stroke="#0f172a" stroke-width="3" />
+		<rect x="220" y="160" width="80" height="160" fill="#1d4ed8" />
+		<rect x="240" y="190" width="40" height="60" fill="#fef3c7" />
+		<rect x="40" y="160" width="60" height="60" fill="#bfdbfe" />
+		<rect x="120" y="160" width="60" height="60" fill="#bfdbfe" />
+		<rect x="340" y="160" width="60" height="60" fill="#bfdbfe" />
+		<rect x="420" y="160" width="60" height="60" fill="#bfdbfe" />
+		<rect x="40" y="240" width="60" height="60" fill="#bfdbfe" />
+		<rect x="120" y="240" width="60" height="60" fill="#bfdbfe" />
+		<rect x="340" y="240" width="60" height="60" fill="#bfdbfe" />
+		<rect x="420" y="240" width="60" height="60" fill="#bfdbfe" />
+		<!-- flagpole -->
+		<line x1="260" y1="-20" x2="260" y2="-130" stroke="#0f172a" stroke-width="3" />
+		<rect x="260" y="-120" width="60" height="36" fill="#dc2626" />
+		<rect x="260" y="-84" width="60" height="36" fill="#f8fafc" />
+	</g>
+	<!-- foreground hills -->
+	<path d="M0 780 C 200 720 380 820 600 760 C 820 700 1000 820 1220 760 C 1380 720 1500 800 1600 760 L 1600 1000 L 0 1000 Z" fill="url(#hill1)" />
+	<!-- students -->
+	<g transform="translate(360 820)">
+		<circle cx="0" cy="0" r="22" fill="#fde68a" />
+		<rect x="-26" y="22" width="52" height="80" fill="#1e40af" rx="6" />
+		<rect x="-22" y="100" width="44" height="40" fill="#0f172a" rx="4" />
+	</g>
+	<g transform="translate(460 840)">
+		<circle cx="0" cy="0" r="22" fill="#fcd5b5" />
+		<rect x="-26" y="22" width="52" height="80" fill="#dc2626" rx="6" />
+		<rect x="-22" y="100" width="44" height="40" fill="#0f172a" rx="4" />
+	</g>
+	<g transform="translate(1140 840)">
+		<circle cx="0" cy="0" r="22" fill="#fde68a" />
+		<rect x="-26" y="22" width="52" height="80" fill="#047857" rx="6" />
+		<rect x="-22" y="100" width="44" height="40" fill="#0f172a" rx="4" />
+	</g>
+	<g transform="translate(1240 820)">
+		<circle cx="0" cy="0" r="22" fill="#fcd5b5" />
+		<rect x="-26" y="22" width="52" height="80" fill="#1e40af" rx="6" />
+		<rect x="-22" y="100" width="44" height="40" fill="#0f172a" rx="4" />
+	</g>
+</svg>
