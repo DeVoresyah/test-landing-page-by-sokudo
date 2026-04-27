@@ -1,11 +1,13 @@
 <script lang="ts">
 	import About from '$lib/components/About.svelte';
+	import AchievementsSection from '$lib/components/AchievementsSection.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Card from '$lib/components/Card.svelte';
 	import Container from '$lib/components/Container.svelte';
 	import FaqAccordion from '$lib/components/FaqAccordion.svelte';
 	import Gallery from '$lib/components/Gallery.svelte';
 	import Hero from '$lib/components/Hero.svelte';
+	import ProgramsSection from '$lib/components/ProgramsSection.svelte';
 	import Section from '$lib/components/Section.svelte';
 	import SectionHeading from '$lib/components/SectionHeading.svelte';
 	import StatsStrip from '$lib/components/StatsStrip.svelte';
@@ -35,6 +37,8 @@
 <Hero />
 <StatsStrip />
 <About />
+<ProgramsSection />
+<AchievementsSection />
 
 <Section id="galeri" tone="default" spacing="md">
 	<SectionHeading

@@ -1,4 +1,5 @@
 export { default as About } from './components/About.svelte';
+export { default as AchievementsSection } from './components/AchievementsSection.svelte';
 export { default as Button } from './components/Button.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Container } from './components/Container.svelte';
@@ -9,6 +10,7 @@ export { default as Gallery } from './components/Gallery.svelte';
 export { default as Lightbox } from './components/Lightbox.svelte';
 export { default as Logo } from './components/Logo.svelte';
 export { default as Navbar } from './components/Navbar.svelte';
+export { default as ProgramsSection } from './components/ProgramsSection.svelte';
 export { default as Section } from './components/Section.svelte';
 export { default as SectionHeading } from './components/SectionHeading.svelte';
 export { default as StatsStrip } from './components/StatsStrip.svelte';
@@ -36,3 +38,9 @@ export type { FaqItem } from './data/faq';
 
 export { gallery, galleryCategories } from './data/gallery';
 export type { GalleryCategory, GalleryItem } from './data/gallery';
+
+export { programs } from './data/programs';
+export type { Program } from './data/programs';
+
+export { achievements, levelLabels, levelStyles } from './data/achievements';
+export type { Achievement, AchievementLevel } from './data/achievements';
