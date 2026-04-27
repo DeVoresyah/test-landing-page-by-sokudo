@@ -21,6 +21,12 @@ export const site = {
 		whatsapp: '+62 812 3456 7890',
 		email: 'halo@smaharapanbangsa.sch.id'
 	},
+	hours: [
+		{ days: 'Senin – Jumat', time: '07.00 – 16.00 WIB' },
+		{ days: 'Sabtu', time: '07.00 – 12.00 WIB' },
+		{ days: 'Minggu & Libur Nasional', time: 'Tutup' }
+	],
+	mapsQuery: 'SMA Harapan Bangsa, Jl. Pendidikan Raya No. 88, Jakarta Selatan',
 	social: [
 		{ label: 'Instagram', href: 'https://instagram.com/smaharapanbangsa' },
 		{ label: 'YouTube', href: 'https://youtube.com/@smaharapanbangsa' },
