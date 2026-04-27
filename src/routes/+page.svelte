@@ -1,22 +1,25 @@
 <script lang="ts">
+	import Button from '$lib/components/Button.svelte';
+	import Card from '$lib/components/Card.svelte';
+	import Container from '$lib/components/Container.svelte';
+	import Section from '$lib/components/Section.svelte';
+	import SectionHeading from '$lib/components/SectionHeading.svelte';
+	import { ctaPrimary, site } from '$lib/config/site';
+
 	const stats = [
-		{ label: 'Students', value: '1,240+' },
-		{ label: 'Teachers', value: '86' },
-		{ label: 'Programs', value: '24' },
-		{ label: 'Years of excellence', value: '32' }
+		{ label: 'Siswa aktif', value: '1.240+' },
+		{ label: 'Guru & staf', value: '86' },
+		{ label: 'Program unggulan', value: '24' },
+		{ label: 'Tahun berdedikasi', value: '32' }
 	];
 </script>
 
 <svelte:head>
-	<title>SMA Harapan Bangsa — Belajar, Tumbuh, Berdampak</title>
-	<meta
-		name="description"
-		content="Sekolah menengah atas modern dengan kurikulum bertaraf internasional dan ekosistem belajar yang menumbuhkan."
-	/>
+	<title>{site.name} — {site.tagline}</title>
+	<meta name="description" content={site.description} />
 </svelte:head>
 
-<main class="relative isolate overflow-hidden">
-	<!-- Decorative background -->
+<section id="beranda" class="relative isolate overflow-hidden bg-white">
 	<div
 		aria-hidden="true"
 		class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl"
@@ -27,39 +30,14 @@
 		></div>
 	</div>
 
-	<!-- Nav -->
-	<header class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
-		<a href="/" class="flex items-center gap-2 font-bold text-primary-700">
-			<span
-				class="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 text-white shadow-md shadow-primary-500/30"
-			>
-				H
-			</span>
-			<span class="text-lg tracking-tight">Harapan Bangsa</span>
-		</a>
-		<nav class="hidden items-center gap-8 text-sm font-medium text-neutral-700 md:flex">
-			<a href="#about" class="hover:text-primary-700">About</a>
-			<a href="#programs" class="hover:text-primary-700">Programs</a>
-			<a href="#admission" class="hover:text-primary-700">Admission</a>
-			<a href="#contact" class="hover:text-primary-700">Contact</a>
-		</nav>
-		<a
-			href="#admission"
-			class="rounded-full bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-primary-600/30 transition hover:bg-primary-700"
-		>
-			Apply now
-		</a>
-	</header>
-
-	<!-- Hero -->
-	<section class="mx-auto max-w-7xl px-6 pb-24 pt-12 lg:px-8 lg:pt-20">
-		<div class="grid items-center gap-12 lg:grid-cols-2">
+	<Container>
+		<div class="grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
 			<div>
 				<span
 					class="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700"
 				>
 					<span class="size-1.5 rounded-full bg-primary-500"></span>
-					Open enrollment 2026 / 2027
+					Pendaftaran Siswa Baru 2026 / 2027
 				</span>
 				<h1
 					class="mt-6 text-balance text-5xl font-extrabold tracking-tight text-neutral-900 sm:text-6xl"
@@ -67,27 +45,17 @@
 					Belajar, tumbuh, dan
 					<span
 						class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
-						>berdampak</span
 					>
+						berdampak
+					</span>
 					di masa depan.
 				</h1>
 				<p class="mt-6 max-w-xl text-lg leading-relaxed text-neutral-600">
-					Lingkungan sekolah modern dengan kurikulum bertaraf internasional, guru
-					berdedikasi, dan ekosistem yang menumbuhkan rasa ingin tahu.
+					{site.description}
 				</p>
 				<div class="mt-8 flex flex-wrap gap-3">
-					<a
-						href="#admission"
-						class="rounded-full bg-primary-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-primary-600/30 transition hover:bg-primary-700"
-					>
-						Daftar sekarang
-					</a>
-					<a
-						href="#programs"
-						class="rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800 transition hover:border-secondary-400 hover:text-secondary-700"
-					>
-						Jelajahi program
-					</a>
+					<Button href={ctaPrimary.href} size="lg">{ctaPrimary.label}</Button>
+					<Button href="#program" variant="secondary" size="lg">Jelajahi Program</Button>
 				</div>
 			</div>
 
@@ -95,9 +63,7 @@
 				<div
 					class="aspect-[4/3] w-full rounded-3xl bg-gradient-to-br from-primary-500 via-primary-600 to-secondary-700 p-1 shadow-2xl shadow-secondary-900/20"
 				>
-					<div
-						class="grid h-full place-items-center rounded-3xl bg-neutral-50 text-center"
-					>
+					<div class="grid h-full place-items-center rounded-3xl bg-neutral-50 text-center">
 						<div class="space-y-2 px-8">
 							<div
 								class="mx-auto grid size-16 place-items-center rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-600 text-2xl text-white shadow-lg"
@@ -116,21 +82,28 @@
 				</div>
 			</div>
 		</div>
+	</Container>
+</section>
 
-		<!-- Stats -->
-		<dl class="mt-20 grid grid-cols-2 gap-6 sm:grid-cols-4">
-			{#each stats as stat}
-				<div
-					class="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-md"
+<Section tone="muted" spacing="md">
+	<SectionHeading
+		eyebrow="Sekilas Sekolah"
+		title="Angka yang berbicara tentang kami"
+		description="Tiga dekade konsisten mengembangkan ekosistem belajar yang menumbuhkan rasa ingin tahu, karakter, dan prestasi."
+		align="center"
+		class="mx-auto"
+	/>
+
+	<dl class="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
+		{#each stats as stat (stat.label)}
+			<Card interactive>
+				<dt class="text-sm font-medium text-neutral-500">{stat.label}</dt>
+				<dd
+					class="mt-2 bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-3xl font-extrabold text-transparent"
 				>
-					<dt class="text-sm font-medium text-neutral-500">{stat.label}</dt>
-					<dd
-						class="mt-2 bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-3xl font-extrabold text-transparent"
-					>
-						{stat.value}
-					</dd>
-				</div>
-			{/each}
-		</dl>
-	</section>
-</main>
+					{stat.value}
+				</dd>
+			</Card>
+		{/each}
+	</dl>
+</Section>
