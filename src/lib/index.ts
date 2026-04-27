@@ -2,13 +2,17 @@ export { default as About } from './components/About.svelte';
 export { default as Button } from './components/Button.svelte';
 export { default as Card } from './components/Card.svelte';
 export { default as Container } from './components/Container.svelte';
+export { default as FaqAccordion } from './components/FaqAccordion.svelte';
 export { default as Footer } from './components/Footer.svelte';
 export { default as Hero } from './components/Hero.svelte';
+export { default as Gallery } from './components/Gallery.svelte';
+export { default as Lightbox } from './components/Lightbox.svelte';
 export { default as Logo } from './components/Logo.svelte';
 export { default as Navbar } from './components/Navbar.svelte';
 export { default as Section } from './components/Section.svelte';
 export { default as SectionHeading } from './components/SectionHeading.svelte';
 export { default as StatsStrip } from './components/StatsStrip.svelte';
+export { default as VirtualTour } from './components/VirtualTour.svelte';
 
 export { reveal } from './actions/reveal';
 export type { RevealOptions } from './actions/reveal';
@@ -22,6 +26,13 @@ export {
 	sejarah,
 	site,
 	stats,
+	virtualTour,
 	visi
 } from './config/site';
 export type { NavItem, Stat } from './config/site';
+
+export { faqs } from './data/faq';
+export type { FaqItem } from './data/faq';
+
+export { gallery, galleryCategories } from './data/gallery';
+export type { GalleryCategory, GalleryItem } from './data/gallery';

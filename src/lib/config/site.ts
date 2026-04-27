@@ -21,6 +21,12 @@ export const site = {
 		whatsapp: '+62 812 3456 7890',
 		email: 'halo@smaharapanbangsa.sch.id'
 	},
+	hours: [
+		{ days: 'Senin – Jumat', time: '07.00 – 16.00 WIB' },
+		{ days: 'Sabtu', time: '07.00 – 12.00 WIB' },
+		{ days: 'Minggu & Libur Nasional', time: 'Tutup' }
+	],
+	mapsQuery: 'SMA Harapan Bangsa, Jl. Pendidikan Raya No. 88, Jakarta Selatan',
 	social: [
 		{ label: 'Instagram', href: 'https://instagram.com/smaharapanbangsa' },
 		{ label: 'YouTube', href: 'https://youtube.com/@smaharapanbangsa' },
@@ -84,4 +90,12 @@ export const sejarah = {
 	headline: 'Tiga dekade menumbuhkan generasi pembelajar.',
 	body: 'Berdiri pada tahun 1992 dengan dua kelas dan tiga puluh siswa, SMA Harapan Bangsa tumbuh menjadi sekolah pilihan keluarga di Jakarta Selatan. Lewat pembaruan kurikulum, investasi pada guru, dan budaya belajar yang kolaboratif, kami konsisten menorehkan prestasi akademik dan non-akademik tanpa kehilangan ruh sekolah negeri yang inklusif dan ramah.',
 	image: '/placeholders/history.svg'
+};
+
+// Virtual tour embed — placeholder Google Maps location of the school address.
+// Replace with the real Matterport / Pannellum / YouTube-360 URL once available.
+export const virtualTour = {
+	embedUrl:
+		'https://maps.google.com/maps?q=Jl.%20Pendidikan%20Raya%20Jakarta%20Selatan&t=&z=16&ie=UTF8&iwloc=&output=embed',
+	title: 'Tur Virtual SMA Harapan Bangsa'
 };
