@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/plus-jakarta-sans/800.css';
+
+@theme {
+	--font-sans:
+		'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+	/* Brand: primary green — fresh, growth, school spirit */
+	--color-primary-50: #ecfdf5;
+	--color-primary-100: #d1fae5;
+	--color-primary-200: #a7f3d0;
+	--color-primary-300: #6ee7b7;
+	--color-primary-400: #34d399;
+	--color-primary-500: #10b981;
+	--color-primary-600: #059669;
+	--color-primary-700: #047857;
+	--color-primary-800: #065f46;
+	--color-primary-900: #064e3b;
+	--color-primary-950: #022c22;
+
+	/* Brand: secondary blue — trust, knowledge, calm */
+	--color-secondary-50: #eff6ff;
+	--color-secondary-100: #dbeafe;
+	--color-secondary-200: #bfdbfe;
+	--color-secondary-300: #93c5fd;
+	--color-secondary-400: #60a5fa;
+	--color-secondary-500: #3b82f6;
+	--color-secondary-600: #2563eb;
+	--color-secondary-700: #1d4ed8;
+	--color-secondary-800: #1e40af;
+	--color-secondary-900: #1e3a8a;
+	--color-secondary-950: #172554;
+
+	/* Neutrals — slate-leaning grays */
+	--color-neutral-50: #f8fafc;
+	--color-neutral-100: #f1f5f9;
+	--color-neutral-200: #e2e8f0;
+	--color-neutral-300: #cbd5e1;
+	--color-neutral-400: #94a3b8;
+	--color-neutral-500: #64748b;
+	--color-neutral-600: #475569;
+	--color-neutral-700: #334155;
+	--color-neutral-800: #1e293b;
+	--color-neutral-900: #0f172a;
+	--color-neutral-950: #020617;
+}
+
+html {
+	font-family: var(--font-sans);
+}
