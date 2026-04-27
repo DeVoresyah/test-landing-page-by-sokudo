@@ -49,3 +49,11 @@ export const ctaPrimary = {
 	label: 'Daftar Sekarang',
 	href: '#pendaftaran'
 };
+
+// Virtual tour embed — placeholder Google Maps location of the school address.
+// Replace with the real Matterport / Pannellum / YouTube-360 URL once available.
+export const virtualTour = {
+	embedUrl:
+		'https://maps.google.com/maps?q=Jl.%20Pendidikan%20Raya%20Jakarta%20Selatan&t=&z=16&ie=UTF8&iwloc=&output=embed',
+	title: 'Tur Virtual SMA Harapan Bangsa'
+};

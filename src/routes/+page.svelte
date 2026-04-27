@@ -3,9 +3,11 @@
 	import Card from '$lib/components/Card.svelte';
 	import Container from '$lib/components/Container.svelte';
 	import FaqAccordion from '$lib/components/FaqAccordion.svelte';
+	import Gallery from '$lib/components/Gallery.svelte';
 	import Section from '$lib/components/Section.svelte';
 	import SectionHeading from '$lib/components/SectionHeading.svelte';
-	import { ctaPrimary, site } from '$lib/config/site';
+	import VirtualTour from '$lib/components/VirtualTour.svelte';
+	import { ctaPrimary, site, virtualTour } from '$lib/config/site';
 	import { faqs } from '$lib/data/faq';
 
 	let { form } = $props();
@@ -114,6 +116,70 @@
 			</Card>
 		{/each}
 	</dl>
+</Section>
+
+<Section id="galeri" tone="default" spacing="md">
+	<SectionHeading
+		eyebrow="Galeri"
+		title="Cuplikan kehidupan di {site.shortName}"
+		description="Fasilitas, kegiatan belajar, ekstrakurikuler, dan momen-momen besar di sekolah — saring berdasarkan kategori untuk melihat lebih dekat."
+	/>
+	<div class="mt-10">
+		<Gallery />
+	</div>
+</Section>
+
+<Section id="tur-virtual" tone="muted" spacing="md">
+	<div class="grid items-center gap-10 lg:grid-cols-[5fr_7fr] lg:gap-14">
+		<div>
+			<SectionHeading
+				eyebrow="Tur Virtual"
+				title="Jelajahi Sekolah Kami"
+				description="Tidak sempat berkunjung langsung? Telusuri ruang kelas, laboratorium, perpustakaan, dan area olahraga kami dalam pengalaman 360° interaktif — dari mana saja, kapan saja."
+			/>
+			<ul class="mt-6 space-y-3 text-sm text-neutral-700">
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 inline-flex size-5 flex-none items-center justify-center rounded-full bg-primary-100 text-primary-700"
+						aria-hidden="true"
+					>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="size-3"
+							><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg
+						>
+					</span>
+					Lihat fasilitas dari berbagai sudut
+				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 inline-flex size-5 flex-none items-center justify-center rounded-full bg-primary-100 text-primary-700"
+						aria-hidden="true"
+					>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="size-3"
+							><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg
+						>
+					</span>
+					Kompatibel dengan VR headset & mobile
+				</li>
+				<li class="flex items-start gap-3">
+					<span
+						class="mt-0.5 inline-flex size-5 flex-none items-center justify-center rounded-full bg-primary-100 text-primary-700"
+						aria-hidden="true"
+					>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="size-3"
+							><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" /></svg
+						>
+					</span>
+					Tanpa instalasi — langsung di browser
+				</li>
+			</ul>
+			<div class="mt-8 flex flex-wrap gap-3">
+				<Button href="#tur-virtual" size="lg">Mulai Tur Virtual</Button>
+				<Button href="#kontak" variant="secondary" size="lg">Atur Kunjungan Langsung</Button>
+			</div>
+		</div>
+
+		<VirtualTour embedUrl={virtualTour.embedUrl} title={virtualTour.title} />
+	</div>
 </Section>
 
 <Section id="faq" tone="default">
