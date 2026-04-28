@@ -9,7 +9,6 @@
 	import ProgramsSection from '$lib/components/ProgramsSection.svelte';
 	import Section from '$lib/components/Section.svelte';
 	import SectionHeading from '$lib/components/SectionHeading.svelte';
-	import StatsStrip from '$lib/components/StatsStrip.svelte';
 	import VirtualTour from '$lib/components/VirtualTour.svelte';
 	import { ctaPrimary, site, virtualTour } from '$lib/config/site';
 	import { faqs } from '$lib/data/faq';
@@ -27,7 +26,6 @@
 </svelte:head>
 
 <Hero />
-<StatsStrip />
 <About />
 <ProgramsSection />
 <AchievementsSection />
