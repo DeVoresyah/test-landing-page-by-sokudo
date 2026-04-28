@@ -1,14 +1,19 @@
 <script lang="ts">
 	import About from '$lib/components/About.svelte';
 	import AchievementsSection from '$lib/components/AchievementsSection.svelte';
+	import BrandStrip from '$lib/components/BrandStrip.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import Card from '$lib/components/Card.svelte';
+	import CtaBand from '$lib/components/CtaBand.svelte';
 	import FaqAccordion from '$lib/components/FaqAccordion.svelte';
 	import Gallery from '$lib/components/Gallery.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 	import ProgramsSection from '$lib/components/ProgramsSection.svelte';
 	import Section from '$lib/components/Section.svelte';
 	import SectionHeading from '$lib/components/SectionHeading.svelte';
+	import SectionLabelTab from '$lib/components/SectionLabelTab.svelte';
+	import TestimonialsCarousel, {
+		type Testimonial
+	} from '$lib/components/TestimonialsCarousel.svelte';
 	import VirtualTour from '$lib/components/VirtualTour.svelte';
 	import { ctaPrimary, site, virtualTour } from '$lib/config/site';
 	import { faqs } from '$lib/data/faq';
@@ -18,6 +23,44 @@
 	const phoneTel = site.contact.phone.replace(/\s+/g, '');
 	const waNumber = site.contact.whatsapp.replace(/[^0-9]/g, '');
 	const mapsEmbed = `https://maps.google.com/maps?q=${encodeURIComponent(site.mapsQuery)}&output=embed`;
+
+	const testimonials: Testimonial[] = [
+		{
+			id: 'alumni-nadia',
+			body: 'Di Harapan Bangsa saya belajar mengatur waktu antara OSN, organisasi, dan persiapan kuliah. Guru-gurunya dekat, tapi tetap menantang kami untuk berpikir mandiri.',
+			name: 'Nadia Putri',
+			role: 'Alumni 2022, Teknik Kimia ITB',
+			rating: 5
+		},
+		{
+			id: 'parent-rizky',
+			body: 'Kami melihat anak kami jauh lebih percaya diri sejak kelas X. Komunikasi wali kelas juga rapi, jadi orang tua tahu perkembangan akademik dan karakter anak.',
+			name: 'Rizky Pratama',
+			role: 'Orang tua siswa kelas XI',
+			rating: 5
+		},
+		{
+			id: 'alumni-farah',
+			body: 'Program riset sekolah membantu saya punya portofolio yang kuat saat mendaftar beasiswa. Yang paling terasa adalah budaya bertanya dan presentasi sejak awal.',
+			name: 'Farah Anindya',
+			role: 'Alumni 2021, penerima beasiswa luar negeri',
+			rating: 5
+		},
+		{
+			id: 'parent-maya',
+			body: 'Sekolah memberi ruang untuk anak yang akademiknya kuat sekaligus suka seni. Kami menghargai pendekatan guru yang tidak menyamaratakan semua siswa.',
+			name: 'Maya Lestari',
+			role: 'Orang tua siswa kelas XII',
+			rating: 5
+		},
+		{
+			id: 'alumni-bima',
+			body: 'Dari basket sampai debat bahasa Inggris, saya mendapat banyak kesempatan mencoba. Lingkungan sekolah membuat prestasi terasa seperti kerja tim, bukan beban sendiri.',
+			name: 'Bima Santoso',
+			role: 'Alumni 2020, entrepreneur muda',
+			rating: 5
+		}
+	];
 </script>
 
 <svelte:head>
@@ -26,11 +69,14 @@
 </svelte:head>
 
 <Hero />
+<BrandStrip eyebrow="Akreditasi & Mitra" />
 <About />
 <ProgramsSection />
 <AchievementsSection />
 
-<Section id="galeri" tone="muted" spacing="md">
+<Section id="galeri" tone="muted" spacing="md" class="relative">
+	<SectionLabelTab label="Galeri" />
+
 	<SectionHeading
 		eyebrow="Galeri"
 		title="Cuplikan kehidupan di {site.shortName}"
@@ -93,6 +139,14 @@
 		<VirtualTour embedUrl={virtualTour.embedUrl} title={virtualTour.title} />
 	</div>
 </Section>
+
+<TestimonialsCarousel
+	id="testimoni"
+	eyebrow="Testimoni"
+	title="Cerita alumni dan orang tua"
+	description="Pengalaman keluarga besar sekolah kami tentang pembelajaran, pendampingan, dan ruang tumbuh di {site.shortName}."
+	{testimonials}
+/>
 
 <Section id="faq" tone="default">
 	<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
@@ -288,53 +342,11 @@
 	</div>
 </Section>
 
-<Section id="pendaftaran" tone="muted" spacing="md">
-	<div
-		class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-panel-950 px-6 py-14 text-white shadow-xl shadow-primary-900/20 sm:px-12 sm:py-16 lg:px-16 lg:py-20"
-	>
-		<div
-			aria-hidden="true"
-			class="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-white/10 blur-3xl"
-		></div>
-		<div
-			aria-hidden="true"
-			class="pointer-events-none absolute -bottom-32 -left-20 size-80 rounded-full bg-warm-400/30 blur-3xl"
-		></div>
-
-		<div class="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-			<div>
-				<span
-					class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-white"
-				>
-					<span class="size-1.5 rounded-full bg-white"></span>
-					PPDB 2026 / 2027
-				</span>
-				<h2
-					class="mt-5 text-balance text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
-				>
-					Bergabunglah dengan Keluarga Besar {site.shortName}.
-				</h2>
-				<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-					Kuota terbatas untuk gelombang pertama. Daftarkan putra-putri Anda dan mulai
-					perjalanan belajar yang menumbuhkan karakter, prestasi, dan masa depan.
-				</p>
-			</div>
-
-			<div class="flex flex-wrap gap-3 lg:justify-end">
-				<Button href={ctaPrimary.href} size="lg" variant="secondary" class="!bg-white !text-primary-700 hover:!bg-neutral-100">
-					{ctaPrimary.label}
-				</Button>
-				<Button
-					href="https://wa.me/{waNumber}"
-					size="lg"
-					variant="ghost"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="!text-white hover:!bg-white/10"
-				>
-					Tanya Admisi
-				</Button>
-			</div>
-		</div>
-	</div>
-</Section>
+<CtaBand
+	id="pendaftaran"
+	eyebrow="PPDB 2026 / 2027"
+	title="Bergabunglah dengan Keluarga Besar {site.shortName}."
+	description="Kuota terbatas untuk gelombang pertama. Daftarkan putra-putri Anda dan mulai perjalanan belajar yang menumbuhkan karakter, prestasi, dan masa depan."
+	ctaLabel={ctaPrimary.label}
+	ctaHref={ctaPrimary.href}
+/>

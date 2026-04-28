@@ -32,6 +32,7 @@
 
 	let scroller = $state<HTMLDivElement | null>(null);
 	let activeIndex = $state(0);
+	const ratingStars = [0, 1, 2, 3, 4];
 
 	function scrollByCard(direction: 1 | -1) {
 		if (!scroller) return;
@@ -107,14 +108,14 @@
 				onscroll={onScroll}
 				class="-mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-16 lg:px-16 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
 			>
-				{#each testimonials as t, i (t.id)}
+				{#each testimonials as t (t.id)}
 					<article
 						data-testimonial
-						class="flex w-[85%] shrink-0 snap-start flex-col gap-5 rounded-3xl border border-neutral-200 bg-neutral-100 p-7 sm:w-[60%] lg:w-[40%]"
+						class="flex w-[85%] shrink-0 snap-start flex-col gap-5 rounded-[14px] border border-neutral-200 bg-neutral-100 p-7 sm:w-[60%] lg:w-[40%]"
 					>
 						{#if typeof t.rating === 'number'}
 							<div class="flex items-center gap-1 text-warm-500" aria-label="Rating {t.rating} dari 5">
-								{#each Array.from({ length: 5 }) as _, s}
+								{#each ratingStars as s}
 									<svg
 										viewBox="0 0 20 20"
 										fill={s < (t.rating ?? 0) ? 'currentColor' : 'none'}

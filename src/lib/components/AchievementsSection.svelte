@@ -35,7 +35,7 @@
 	};
 </script>
 
-<Section id="prestasi" tone="muted" spacing="lg">
+<Section id="prestasi" tone="default" spacing="lg">
 	<SectionHeading
 		eyebrow="Prestasi"
 		title="Karya dan pencapaian yang membanggakan"

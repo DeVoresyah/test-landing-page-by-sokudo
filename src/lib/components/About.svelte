@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Section from './Section.svelte';
 	import SectionHeading from './SectionHeading.svelte';
+	import SectionLabelTab from './SectionLabelTab.svelte';
 	import { reveal } from '../actions/reveal';
 	import { misi, principal, sejarah, site, visi } from '../config/site';
 
@@ -48,7 +49,9 @@
 	];
 </script>
 
-<Section id="tentang" tone="default" spacing="lg">
+<Section id="tentang" tone="muted" spacing="lg" class="relative">
+	<SectionLabelTab label="Tentang" />
+
 	<SectionHeading
 		eyebrow="Tentang Kami"
 		title="Mengenal {site.name} lebih dekat"

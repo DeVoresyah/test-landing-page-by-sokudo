@@ -19,7 +19,7 @@
 	<!-- desktop / tablet: vertical tab on the left edge -->
 	<span
 		aria-hidden="true"
-		class="pointer-events-none absolute top-12 left-0 hidden origin-top-left rotate-180 rounded-r-[6px] bg-primary-500 px-3 py-2 text-[11px] font-semibold tracking-[0.22em] whitespace-nowrap text-white uppercase shadow-button md:inline-block"
+		class="pointer-events-none absolute top-12 left-0 hidden origin-top-left translate-x-full rotate-180 rounded-r-[6px] bg-primary-500 px-3 py-2 text-[11px] font-semibold tracking-[0.22em] whitespace-nowrap text-white uppercase shadow-button md:inline-block"
 		style="writing-mode: vertical-rl;"
 	>
 		{label}
