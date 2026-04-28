@@ -11,7 +11,7 @@
 			<div class="lg:col-span-2">
 				<a href="/" class="inline-flex items-center gap-2 font-bold text-white">
 					<span
-						class="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 text-white shadow-md shadow-primary-500/30"
+						class="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-panel-800 text-white shadow-md shadow-primary-500/30"
 					>
 						{site.logoMark}
 					</span>
@@ -37,7 +37,7 @@
 			</div>
 
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-white">Navigasi</h3>
+				<h3 class="font-mono text-sm font-semibold uppercase tracking-wider text-white">Navigasi</h3>
 				<ul class="mt-4 space-y-2 text-sm">
 					{#each nav as item (item.href)}
 						<li>
@@ -50,7 +50,7 @@
 			</div>
 
 			<div>
-				<h3 class="text-sm font-semibold uppercase tracking-wider text-white">Kontak</h3>
+				<h3 class="font-mono text-sm font-semibold uppercase tracking-wider text-white">Kontak</h3>
 				<address class="mt-4 space-y-3 text-sm not-italic text-neutral-400">
 					<p>
 						{site.address.street}<br />

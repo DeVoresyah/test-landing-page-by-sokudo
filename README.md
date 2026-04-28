@@ -7,7 +7,7 @@ A landing page for an Indonesian high school, built with **SvelteKit 5**, **Tail
 - [SvelteKit 5](https://svelte.dev/) (Svelte 5 runes)
 - [Tailwind CSS v4](https://tailwindcss.com/) (config-less, via `@theme` in `src/app.css`)
 - TypeScript
-- [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) via `@fontsource`
+- [Inter](https://fonts.google.com/specimen/Inter) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) via `@fontsource`
 - Vite 6
 - `@sveltejs/adapter-cloudflare` (Cloudflare Pages)
 
@@ -36,15 +36,15 @@ pnpm dev --open
 
 ## Scripts
 
-| Command          | What it does                                                       |
-| ---------------- | ------------------------------------------------------------------ |
-| `pnpm dev`       | Start the Vite dev server with HMR                                 |
-| `pnpm build`     | Production build (outputs to `.svelte-kit/cloudflare/`)            |
-| `pnpm preview`   | Preview the production build locally                               |
-| `pnpm check`     | Run `svelte-check` (type + a11y + Svelte diagnostics)              |
-| `pnpm check:watch` | Same as `check`, in watch mode                                   |
-| `pnpm format`    | Format with Prettier _(currently broken — see Known issues)_       |
-| `pnpm lint`      | Prettier check + ESLint _(currently broken — see Known issues)_    |
+| Command            | What it does                                                    |
+| ------------------ | --------------------------------------------------------------- |
+| `pnpm dev`         | Start the Vite dev server with HMR                              |
+| `pnpm build`       | Production build (outputs to `.svelte-kit/cloudflare/`)         |
+| `pnpm preview`     | Preview the production build locally                            |
+| `pnpm check`       | Run `svelte-check` (type + a11y + Svelte diagnostics)           |
+| `pnpm check:watch` | Same as `check`, in watch mode                                  |
+| `pnpm format`      | Format with Prettier _(currently broken — see Known issues)_    |
+| `pnpm lint`        | Prettier check + ESLint _(currently broken — see Known issues)_ |
 
 ## Project structure
 
@@ -88,15 +88,15 @@ static/
 
 ## Where to edit content
 
-| Want to change…                  | Edit…                                |
-| -------------------------------- | ------------------------------------ |
-| School name, address, phone, socials, hours, maps embed | `src/lib/config/site.ts` |
-| Programs / jurusan               | `src/lib/data/programs.ts`           |
-| Achievements / prestasi          | `src/lib/data/achievements.ts` (one entry should have `featured: true`) |
-| Gallery photos                   | `src/lib/data/gallery.ts` (swap `src` + `srcset` for real assets in `static/`) |
-| FAQ items                        | `src/lib/data/faq.ts`                |
-| Brand colors / fonts             | `src/app.css` under `@theme` (`--color-primary-*`, `--color-secondary-*`, `--font-sans`) |
-| Page composition / section order | `src/routes/+page.svelte`            |
+| Want to change…                                         | Edit…                                                                                                                                                                  |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| School name, address, phone, socials, hours, maps embed | `src/lib/config/site.ts`                                                                                                                                               |
+| Programs / jurusan                                      | `src/lib/data/programs.ts`                                                                                                                                             |
+| Achievements / prestasi                                 | `src/lib/data/achievements.ts` (one entry should have `featured: true`)                                                                                                |
+| Gallery photos                                          | `src/lib/data/gallery.ts` (swap `src` + `srcset` for real assets in `static/`)                                                                                         |
+| FAQ items                                               | `src/lib/data/faq.ts`                                                                                                                                                  |
+| Design tokens / fonts                                   | `src/app.css` under `@theme` (`--color-brand-*`, `--color-primary-*`, `--color-neutral-*`, `--color-panel-*`, `--color-warm-*`, type, spacing, radius, shadow, motion) |
+| Page composition / section order                        | `src/routes/+page.svelte`                                                                                                                                              |
 
 ## Deploy to Cloudflare Pages
 

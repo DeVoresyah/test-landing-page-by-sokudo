@@ -6,9 +6,7 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		interface Platform {
-			env?: {
-				// Bind Cloudflare resources here as they're added.
-			};
+			env?: Record<string, unknown>;
 			cf?: CfProperties;
 			ctx?: ExecutionContext;
 		}

@@ -11,10 +11,15 @@
 		size?: Size;
 		fullWidth?: boolean;
 		class?: string;
+		href?: string;
+		target?: HTMLAnchorAttributes['target'];
+		rel?: HTMLAnchorAttributes['rel'];
+		type?: HTMLButtonAttributes['type'];
+		disabled?: HTMLButtonAttributes['disabled'];
+		onclick?: (event: MouseEvent) => void;
 	};
 
-	type Props = CommonProps &
-		(({ href: string } & Omit<HTMLAnchorAttributes, 'class' | 'children'>) | ({ href?: undefined } & Omit<HTMLButtonAttributes, 'class' | 'children'>));
+	type Props = CommonProps;
 
 	let {
 		children,
@@ -23,7 +28,11 @@
 		fullWidth = false,
 		class: className = '',
 		href,
-		...rest
+		target,
+		rel,
+		type = 'button',
+		disabled,
+		onclick
 	}: Props = $props();
 
 	const base =
@@ -33,7 +42,7 @@
 		primary:
 			'bg-primary-600 text-white shadow-md shadow-primary-600/25 hover:bg-primary-700 active:bg-primary-800',
 		secondary:
-			'border border-neutral-300 bg-white text-neutral-800 hover:border-secondary-400 hover:text-secondary-700',
+			'border border-neutral-300 bg-white text-neutral-800 hover:border-primary-300 hover:text-primary-700',
 		ghost: 'text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900'
 	};
 
@@ -50,11 +59,11 @@
 </script>
 
 {#if href}
-	<a {href} class={classes} {...rest as HTMLAnchorAttributes}>
+	<a {href} {target} {rel} {onclick} class={classes}>
 		{@render children()}
 	</a>
 {:else}
-	<button class={classes} {...rest as HTMLButtonAttributes}>
+	<button {type} {disabled} {onclick} class={classes}>
 		{@render children()}
 	</button>
 {/if}

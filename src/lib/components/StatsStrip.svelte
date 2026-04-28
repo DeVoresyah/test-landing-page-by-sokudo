@@ -15,11 +15,11 @@
 					use:reveal={{ delay: 80 * i }}
 					class="flex flex-col gap-1 bg-white p-6 sm:p-7"
 				>
-					<dt class="text-xs font-semibold tracking-wider text-neutral-500 uppercase">
+					<dt class="font-mono text-xs font-semibold tracking-wider text-neutral-500 uppercase">
 						{stat.label}
 					</dt>
 					<dd
-						class="bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl"
+						class="bg-gradient-to-r from-primary-700 to-panel-800 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl"
 					>
 						{stat.value}
 					</dd>

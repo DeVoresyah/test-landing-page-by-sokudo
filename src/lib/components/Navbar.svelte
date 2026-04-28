@@ -36,7 +36,7 @@
 <svelte:window onkeydown={onKeydown} />
 
 <header
-	class="sticky top-0 z-40 w-full border-b transition-colors duration-200 {scrolled
+	class="sticky top-0 z-40 w-full border-b transition-colors duration-normal {scrolled
 		? 'border-neutral-200 bg-white/85 shadow-sm backdrop-blur'
 		: 'border-transparent bg-white/60 backdrop-blur'}"
 >

@@ -20,7 +20,7 @@
 	<!-- Soft green/blue gradient overlay -->
 	<div
 		aria-hidden="true"
-		class="absolute inset-0 -z-20 bg-gradient-to-br from-primary-700/85 via-primary-600/65 to-secondary-700/85"
+		class="absolute inset-0 -z-20 bg-gradient-to-br from-primary-700/85 via-primary-600/65 to-panel-950/85"
 	></div>
 
 	<!-- Bottom-up vignette to seat the type on the image -->
@@ -40,7 +40,7 @@
 			<div class="max-w-3xl">
 				<span
 					use:reveal
-					class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide uppercase backdrop-blur"
+					class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-mono text-xs font-semibold tracking-wide uppercase backdrop-blur"
 				>
 					<span class="size-1.5 rounded-full bg-primary-300"></span>
 					Pendaftaran Siswa Baru 2026 / 2027 dibuka
@@ -52,7 +52,7 @@
 				>
 					Selamat Datang di
 					<span
-						class="block bg-gradient-to-r from-primary-200 via-white to-secondary-200 bg-clip-text text-transparent"
+						class="block bg-gradient-to-r from-primary-200 via-white to-warm-200 bg-clip-text text-transparent"
 					>
 						{site.name}
 					</span>
@@ -90,7 +90,7 @@
 		aria-label="Gulir ke bagian Tentang"
 		class="group absolute inset-x-0 bottom-6 mx-auto flex w-fit flex-col items-center gap-2 text-white/80 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-700"
 	>
-		<span class="text-[11px] font-semibold tracking-[0.2em] uppercase">Gulir</span>
+		<span class="font-mono text-[11px] font-semibold tracking-[0.2em] uppercase">Gulir</span>
 		<span
 			class="animate-scroll-bob flex size-9 items-center justify-center rounded-full border border-white/40 bg-white/10 backdrop-blur"
 		>

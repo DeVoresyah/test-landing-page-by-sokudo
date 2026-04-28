@@ -15,7 +15,7 @@
 
 <a href="/" class="flex items-center gap-2 font-bold {text}" aria-label={site.name}>
 	<span
-		class="grid {mark} place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-600 font-bold text-white shadow-md shadow-primary-500/30"
+		class="grid {mark} place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-panel-800 font-bold text-white shadow-md shadow-primary-500/30"
 	>
 		{site.logoMark}
 	</span>

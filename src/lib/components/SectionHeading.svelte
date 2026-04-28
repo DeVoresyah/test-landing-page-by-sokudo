@@ -36,7 +36,7 @@
 <div class="flex max-w-3xl flex-col gap-4 {wrapperAlign} {className}">
 	{#if eyebrow}
 		<span
-			class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider {eyebrowStyle}"
+			class="inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider {eyebrowStyle}"
 		>
 			<span class="size-1.5 rounded-full bg-primary-500"></span>
 			{eyebrow}

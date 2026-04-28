@@ -14,9 +14,9 @@ export type Achievement = {
 // the only consumer.
 export const levelStyles: Record<AchievementLevel, string> = {
 	kabupaten: 'border-neutral-200 bg-neutral-100 text-neutral-700',
-	provinsi: 'border-secondary-200 bg-secondary-50 text-secondary-700',
+	provinsi: 'border-warm-200 bg-warm-50 text-warm-700',
 	nasional: 'border-primary-200 bg-primary-50 text-primary-700',
-	internasional: 'border-amber-200 bg-amber-50 text-amber-800'
+	internasional: 'border-warm-300 bg-warm-100 text-warm-800'
 };
 
 export const levelLabels: Record<AchievementLevel, string> = {

@@ -31,7 +31,7 @@
 						{item.question}
 					</span>
 					<span
-						class="grid size-8 shrink-0 place-items-center rounded-full bg-primary-50 text-primary-700 transition-transform duration-200 {isOpen
+						class="grid size-8 shrink-0 place-items-center rounded-full bg-primary-50 text-primary-700 transition-transform duration-normal {isOpen
 							? 'rotate-180'
 							: ''}"
 						aria-hidden="true"

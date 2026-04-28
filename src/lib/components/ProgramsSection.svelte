@@ -20,11 +20,11 @@
 			{@const tint =
 				p.tone === 'primary'
 					? 'bg-primary-100 text-primary-700'
-					: 'bg-secondary-100 text-secondary-700'}
+					: 'bg-warm-100 text-warm-700'}
 			{@const link =
 				p.tone === 'primary'
 					? 'text-primary-700 hover:text-primary-800'
-					: 'text-secondary-700 hover:text-secondary-800'}
+					: 'text-warm-700 hover:text-warm-800'}
 			<div use:reveal={{ delay: i * 80 }} class="h-full">
 				<Card interactive padding="lg" class="flex h-full flex-col">
 					<span
@@ -45,7 +45,7 @@
 					</span>
 
 					<div class="mt-5">
-						<p class="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+						<p class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">
 							{p.tagline}
 						</p>
 						<h3 class="mt-1 text-xl font-bold text-neutral-900">{p.name}</h3>

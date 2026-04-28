@@ -18,15 +18,15 @@ Dribbble queries that surface the right inspiration corpus for this project:
 ## Direction A — Soft, gradient-accented (CHOSEN)
 
 > Clean white canvas, generous whitespace, one bold gradient accent
-> (`primary-500 → secondary-600`) used sparingly: the headline accent word,
-> the logo mark, the primary CTA. Photography sits in rounded `rounded-3xl`
+> (`primary-500 → panel-800`, with `warm-*` as the support accent) used sparingly:
+> the headline accent word, the logo mark, the primary CTA. Photography sits in rounded `rounded-3xl`
 > frames with a thin gradient border. Stat cards are soft-bordered with
 > subtle hover lift.
 
 Why this one:
 
-- Matches the brand tokens Teddy already set up (emerald `primary` + blue
-  `secondary`) without us having to redo the palette.
+- Matches the DESIGN.md token direction: brand-blue `primary`, charcoal
+  `panel`, and restrained `warm` accents.
 - Reads as modern + trustworthy in the Indonesian high-school context —
   important for parents, who are the actual decision-makers for SMA
   enrollment.
@@ -41,8 +41,8 @@ school redesigns lean this way.
 
 Big photo hero, serif display headline, ochre/cream palette, lots of body
 copy. Skipped because (a) it asks for high-quality original photography we
-don't yet have, and (b) the existing brand tokens are cool-toned greens and
-blues — switching to a warm palette would mean throwing out Teddy's work.
+don't yet have, and (b) the token system now uses warm only as an accent,
+not as the dominant surface color.
 
 ## Direction C — Playful, illustrated
 

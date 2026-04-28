@@ -18,6 +18,7 @@
 	const visible = $derived<GalleryItem[]>(
 		active === 'all' ? gallery : gallery.filter((g) => g.category === active)
 	);
+	const motionNormal = 220;
 
 	function openAt(item: GalleryItem) {
 		const i = visible.findIndex((g) => g.id === item.id);
@@ -67,8 +68,8 @@
 				)}"
 				onclick={() => openAt(item)}
 				aria-label="Lihat {item.caption}"
-				in:fade={{ duration: 220, delay: 30 }}
-				animate:flip={{ duration: 320 }}
+				in:fade={{ duration: motionNormal, delay: 30 }}
+				animate:flip={{ duration: motionNormal }}
 			>
 				<img
 					src={item.src}
@@ -79,13 +80,13 @@
 					height={item.height}
 					loading="lazy"
 					decoding="async"
-					class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-105"
+					class="absolute inset-0 size-full object-cover transition duration-normal group-hover:scale-105"
 				/>
 				<div
 					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/75 via-neutral-950/10 to-transparent opacity-90 transition group-hover:opacity-100"
 				></div>
 				<div class="absolute inset-x-3 bottom-3 text-left text-white sm:inset-x-4 sm:bottom-4">
-					<p class="text-xs font-semibold uppercase tracking-wider text-primary-200">
+					<p class="font-mono text-xs font-semibold uppercase tracking-wider text-primary-200">
 						{galleryCategories.find((c) => c.value === item.category)?.label}
 					</p>
 					<p class="mt-1 line-clamp-2 text-sm font-semibold sm:text-base">{item.caption}</p>

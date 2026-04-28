@@ -14,6 +14,8 @@
 
 	const current = $derived(items[index]);
 	const hasItems = $derived(items.length > 0);
+	const motionFast = 140;
+	const motionNormal = 220;
 
 	function prev() {
 		if (!hasItems) return;
@@ -63,12 +65,12 @@
 			class="absolute inset-0 cursor-zoom-out bg-neutral-950/85 backdrop-blur-sm"
 			aria-label="Tutup pratinjau"
 			onclick={onClose}
-			transition:fade={{ duration: 180 }}
+			transition:fade={{ duration: motionFast }}
 		></button>
 
 		<div
 			class="relative z-10 flex max-h-[92vh] w-[min(92vw,1200px)] flex-col items-center gap-4"
-			transition:scale={{ duration: 200, start: 0.96, opacity: 0 }}
+			transition:scale={{ duration: motionNormal, start: 0.96, opacity: 0 }}
 		>
 			<button
 				type="button"
@@ -84,7 +86,7 @@
 			{#key current.id}
 				<figure
 					class="relative flex max-h-[78vh] w-full items-center justify-center overflow-hidden rounded-2xl bg-neutral-900 shadow-2xl"
-					in:fade={{ duration: 180 }}
+					in:fade={{ duration: motionFast }}
 				>
 					<img
 						src={current.src}

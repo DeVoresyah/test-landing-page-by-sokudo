@@ -22,10 +22,11 @@
 	}: Props = $props();
 
 	let loaded = $state(false);
+	const motionNormal = 220;
 </script>
 
 <div
-	class="relative aspect-video w-full overflow-hidden rounded-3xl bg-neutral-900 shadow-xl shadow-secondary-900/20 ring-1 ring-neutral-200/60"
+	class="relative aspect-video w-full overflow-hidden rounded-3xl bg-panel-900 shadow-xl shadow-panel-900/20 ring-1 ring-neutral-200/60"
 >
 	{#if loaded}
 		<iframe
@@ -36,7 +37,7 @@
 			allowfullscreen
 			referrerpolicy="no-referrer-when-downgrade"
 			class="absolute inset-0 size-full border-0"
-			in:fade={{ duration: 220 }}
+			in:fade={{ duration: motionNormal }}
 		></iframe>
 	{:else}
 		<button
@@ -54,7 +55,7 @@
 				height="900"
 				loading="lazy"
 				decoding="async"
-				class="absolute inset-0 size-full object-cover transition duration-700 group-hover:scale-[1.03]"
+				class="absolute inset-0 size-full object-cover transition duration-normal group-hover:scale-[1.03]"
 			/>
 			<div
 				class="absolute inset-0 bg-gradient-to-tr from-neutral-950/80 via-neutral-950/40 to-transparent"

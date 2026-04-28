@@ -38,7 +38,8 @@
 		"wrangler": "^4.0.0"
 	},
 	"dependencies": {
-		"@fontsource/plus-jakarta-sans": "^5.1.0"
+		"@fontsource/inter": "^5.2.8",
+		"@fontsource/jetbrains-mono": "^5.2.8"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": []

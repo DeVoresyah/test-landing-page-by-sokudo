@@ -21,7 +21,7 @@
 	{#if featured}
 		<div use:reveal class="mt-12">
 			<div
-				class="relative isolate overflow-hidden rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-secondary-50 p-8 shadow-sm sm:p-10 lg:p-12"
+				class="relative isolate overflow-hidden rounded-3xl border border-primary-100 bg-gradient-to-br from-primary-50 via-white to-warm-50 p-8 shadow-sm sm:p-10 lg:p-12"
 			>
 				<div
 					aria-hidden="true"
@@ -29,14 +29,14 @@
 				></div>
 				<div
 					aria-hidden="true"
-					class="pointer-events-none absolute -bottom-24 -left-16 size-72 rounded-full bg-secondary-200/40 blur-3xl"
+					class="pointer-events-none absolute -bottom-24 -left-16 size-72 rounded-full bg-warm-200/40 blur-3xl"
 				></div>
 
 				<div
 					class="relative grid items-center gap-8 lg:grid-cols-[auto_minmax(0,1fr)_auto]"
 				>
 					<span
-						class="grid size-16 place-items-center rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 text-white shadow-lg shadow-primary-500/30"
+						class="grid size-16 place-items-center rounded-2xl bg-gradient-to-br from-primary-500 to-panel-800 text-white shadow-lg shadow-primary-500/30"
 						aria-hidden="true"
 					>
 						<svg
@@ -56,18 +56,18 @@
 					<div>
 						<div class="flex flex-wrap items-center gap-2">
 							<span
-								class="inline-flex items-center rounded-full border border-primary-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-700"
+								class="inline-flex items-center rounded-full border border-primary-200 bg-white/80 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-primary-700"
 							>
 								Prestasi Unggulan
 							</span>
 							<span
-								class="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider {levelStyles[
+								class="inline-flex items-center rounded-full border px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider {levelStyles[
 									featured.level
 								]}"
 							>
 								{levelLabels[featured.level]}
 							</span>
-							<span class="text-xs font-semibold text-neutral-500">{featured.year}</span>
+							<span class="font-mono text-xs font-semibold text-neutral-500">{featured.year}</span>
 						</div>
 						<h3
 							class="mt-4 text-balance text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl"
@@ -89,7 +89,7 @@
 				<Card interactive padding="lg" class="flex h-full flex-col">
 					<div class="flex items-start justify-between gap-3">
 						<span
-							class="grid size-11 place-items-center rounded-xl bg-amber-100 text-amber-700"
+							class="grid size-11 place-items-center rounded-xl bg-warm-100 text-warm-700"
 							aria-hidden="true"
 						>
 							<svg
@@ -106,7 +106,7 @@
 							</svg>
 						</span>
 						<span
-							class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider {levelStyles[
+							class="inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-[11px] font-semibold uppercase tracking-wider {levelStyles[
 								a.level
 							]}"
 						>

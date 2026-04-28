@@ -19,7 +19,7 @@
 	<div use:reveal class="mt-16 grid items-center gap-10 lg:grid-cols-[2fr_3fr]">
 		<div class="relative">
 			<div
-				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-200/60 via-secondary-200/40 to-transparent blur-xl"
+				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-200/60 via-warm-200/40 to-transparent blur-xl"
 				aria-hidden="true"
 			></div>
 			<div
@@ -36,7 +36,7 @@
 
 		<div use:reveal={{ delay: 120 }}>
 			<span
-				class="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-xs font-semibold tracking-wider text-primary-700 uppercase"
+				class="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 font-mono text-xs font-semibold tracking-wider text-primary-700 uppercase"
 			>
 				<span class="size-1.5 rounded-full bg-primary-500"></span>
 				Sambutan Kepala Sekolah
@@ -58,7 +58,7 @@
 
 			<div class="mt-6 flex items-center gap-3">
 				<div
-					class="grid size-10 place-items-center rounded-full bg-gradient-to-br from-primary-500 to-secondary-600 font-bold text-white"
+					class="grid size-10 place-items-center rounded-full bg-gradient-to-br from-primary-500 to-panel-800 font-bold text-white"
 					aria-hidden="true"
 				>
 					{principal.name.charAt(0)}
@@ -93,7 +93,7 @@
 							<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
 						</svg>
 					</span>
-					<h3 class="text-xs font-bold tracking-[0.2em] text-primary-700 uppercase">Visi</h3>
+					<h3 class="font-mono text-xs font-bold tracking-[0.2em] text-primary-700 uppercase">Visi</h3>
 				</div>
 				<p class="mt-5 text-pretty text-lg leading-relaxed text-neutral-800">{visi}</p>
 			</Card>
@@ -103,7 +103,7 @@
 			<Card variant="default" padding="lg" class="h-full">
 				<div class="flex items-center gap-3">
 					<span
-						class="grid size-10 place-items-center rounded-xl bg-secondary-100 text-secondary-700"
+						class="grid size-10 place-items-center rounded-xl bg-warm-100 text-warm-700"
 						aria-hidden="true"
 					>
 						<svg
@@ -118,13 +118,13 @@
 							<path d="m5 12 5 5L20 7" />
 						</svg>
 					</span>
-					<h3 class="text-xs font-bold tracking-[0.2em] text-secondary-700 uppercase">Misi</h3>
+					<h3 class="font-mono text-xs font-bold tracking-[0.2em] text-warm-700 uppercase">Misi</h3>
 				</div>
 				<ul class="mt-5 space-y-3 text-neutral-700">
 					{#each misi as item, i (i)}
 						<li class="flex gap-3">
 							<span
-								class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-secondary-100 text-[10px] font-bold text-secondary-700"
+								class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-warm-100 text-[10px] font-bold text-warm-700"
 								aria-hidden="true"
 							>
 								{i + 1}
@@ -141,7 +141,7 @@
 	<div use:reveal class="mt-24 grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
 		<div use:reveal>
 			<span
-				class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold tracking-wider text-neutral-600 uppercase"
+				class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 font-mono text-xs font-semibold tracking-wider text-neutral-600 uppercase"
 			>
 				<span class="size-1.5 rounded-full bg-neutral-400"></span>
 				Sejarah Singkat
@@ -158,7 +158,7 @@
 
 		<div use:reveal={{ delay: 120 }} class="relative">
 			<div
-				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-secondary-100 via-primary-100 to-transparent blur-xl"
+				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-warm-100 via-primary-100 to-transparent blur-xl"
 				aria-hidden="true"
 			></div>
 			<div

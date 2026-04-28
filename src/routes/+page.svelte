@@ -3,7 +3,6 @@
 	import AchievementsSection from '$lib/components/AchievementsSection.svelte';
 	import Button from '$lib/components/Button.svelte';
 	import Card from '$lib/components/Card.svelte';
-	import Container from '$lib/components/Container.svelte';
 	import FaqAccordion from '$lib/components/FaqAccordion.svelte';
 	import Gallery from '$lib/components/Gallery.svelte';
 	import Hero from '$lib/components/Hero.svelte';
@@ -16,13 +15,6 @@
 	import { faqs } from '$lib/data/faq';
 
 	let { form } = $props();
-
-	const stats = [
-		{ label: 'Siswa aktif', value: '1.240+' },
-		{ label: 'Guru & staf', value: '86' },
-		{ label: 'Program unggulan', value: '24' },
-		{ label: 'Tahun berdedikasi', value: '32' }
-	];
 
 	const phoneTel = site.contact.phone.replace(/\s+/g, '');
 	const waNumber = site.contact.whatsapp.replace(/[^0-9]/g, '');
@@ -145,7 +137,7 @@
 
 				<dl class="mt-6 space-y-5 text-sm">
 					<div>
-						<dt class="font-semibold uppercase tracking-wider text-neutral-500 text-xs">Alamat</dt>
+						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Alamat</dt>
 						<dd class="mt-1 not-italic text-neutral-700">
 							{site.address.street}<br />
 							{site.address.city}, {site.address.postal}<br />
@@ -154,7 +146,7 @@
 					</div>
 
 					<div>
-						<dt class="font-semibold uppercase tracking-wider text-neutral-500 text-xs">Telepon</dt>
+						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Telepon</dt>
 						<dd class="mt-1 text-neutral-700">
 							<a href="tel:{phoneTel}" class="hover:text-primary-700">{site.contact.phone}</a>
 							<span class="text-neutral-400"> · </span>
@@ -170,7 +162,7 @@
 					</div>
 
 					<div>
-						<dt class="font-semibold uppercase tracking-wider text-neutral-500 text-xs">Email</dt>
+						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Email</dt>
 						<dd class="mt-1 text-neutral-700">
 							<a href="mailto:{site.contact.email}" class="hover:text-primary-700">
 								{site.contact.email}
@@ -179,7 +171,7 @@
 					</div>
 
 					<div>
-						<dt class="font-semibold uppercase tracking-wider text-neutral-500 text-xs">
+						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">
 							Jam Operasional
 						</dt>
 						<dd class="mt-1 space-y-1 text-neutral-700">
@@ -304,7 +296,7 @@
 
 <Section id="pendaftaran" tone="muted" spacing="md">
 	<div
-		class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-700 px-6 py-14 text-white shadow-xl shadow-primary-900/20 sm:px-12 sm:py-16 lg:px-16 lg:py-20"
+		class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-panel-950 px-6 py-14 text-white shadow-xl shadow-primary-900/20 sm:px-12 sm:py-16 lg:px-16 lg:py-20"
 	>
 		<div
 			aria-hidden="true"
@@ -312,13 +304,13 @@
 		></div>
 		<div
 			aria-hidden="true"
-			class="pointer-events-none absolute -bottom-32 -left-20 size-80 rounded-full bg-secondary-400/30 blur-3xl"
+			class="pointer-events-none absolute -bottom-32 -left-20 size-80 rounded-full bg-warm-400/30 blur-3xl"
 		></div>
 
 		<div class="relative grid items-center gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
 			<div>
 				<span
-					class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white"
+					class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-white"
 				>
 					<span class="size-1.5 rounded-full bg-white"></span>
 					PPDB 2026 / 2027
