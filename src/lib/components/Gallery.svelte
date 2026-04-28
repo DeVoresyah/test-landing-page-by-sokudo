@@ -48,8 +48,8 @@
 				role="tab"
 				aria-selected={isActive}
 				class="rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 {isActive
-					? 'bg-neutral-900 text-white shadow-sm'
-					: 'border border-neutral-200 bg-white text-neutral-700 hover:border-primary-300 hover:text-primary-700'}"
+					? 'bg-primary-500 text-white'
+					: 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200 hover:text-neutral-900'}"
 				onclick={() => (active = cat.value)}
 			>
 				{cat.label}
@@ -63,7 +63,7 @@
 		{#each visible as item, i (item.id)}
 			<button
 				type="button"
-				class="group relative overflow-hidden rounded-2xl bg-neutral-100 ring-1 ring-neutral-200/70 transition hover:ring-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 {spanFor(
+				class="group relative overflow-hidden rounded-[14px] border border-neutral-200 bg-neutral-100 transition hover:border-primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 {spanFor(
 					i
 				)}"
 				onclick={() => openAt(item)}
@@ -83,7 +83,7 @@
 					class="absolute inset-0 size-full object-cover transition duration-normal group-hover:scale-105"
 				/>
 				<div
-					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/75 via-neutral-950/10 to-transparent opacity-90 transition group-hover:opacity-100"
+					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-neutral-950/10 to-transparent opacity-85 transition group-hover:opacity-95"
 				></div>
 				<div class="absolute inset-x-3 bottom-3 text-left text-white sm:inset-x-4 sm:bottom-4">
 					<p class="font-mono text-xs font-semibold uppercase tracking-wider text-primary-200">
@@ -92,7 +92,7 @@
 					<p class="mt-1 line-clamp-2 text-sm font-semibold sm:text-base">{item.caption}</p>
 				</div>
 				<span
-					class="absolute right-3 top-3 inline-flex size-8 items-center justify-center rounded-full bg-white/85 text-neutral-900 opacity-0 ring-1 ring-white/40 backdrop-blur transition group-hover:opacity-100 sm:right-4 sm:top-4"
+					class="absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-full bg-white text-primary-600 opacity-0 shadow-sm transition group-hover:opacity-100 sm:right-4 sm:top-4"
 					aria-hidden="true"
 				>
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-4"
