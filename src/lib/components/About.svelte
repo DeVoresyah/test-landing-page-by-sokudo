@@ -1,9 +1,51 @@
 <script lang="ts">
-	import Card from './Card.svelte';
 	import Section from './Section.svelte';
 	import SectionHeading from './SectionHeading.svelte';
 	import { reveal } from '../actions/reveal';
 	import { misi, principal, sejarah, site, visi } from '../config/site';
+
+	type AboutCard = {
+		eyebrow: string;
+		titleLead: string;
+		titleHighlight: string;
+		titleTail: string;
+		body: string;
+		href: string;
+		iconPath: string;
+	};
+
+	// DESIGN.md feature card grid: line icon, strong title with one keyword in
+	// brand blue, short body, circular arrow affordance. Copy is reused from
+	// site config — same content, simpler treatment.
+	const cards: AboutCard[] = [
+		{
+			eyebrow: 'Visi',
+			titleLead: 'Sekolah ',
+			titleHighlight: 'unggul',
+			titleTail: ' yang melahirkan pelajar Pancasila siap kontribusi global.',
+			body: visi,
+			href: '#tentang',
+			iconPath: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12ZM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z'
+		},
+		{
+			eyebrow: 'Misi',
+			titleLead: 'Empat pilar pembelajaran yang ',
+			titleHighlight: 'berdampak',
+			titleTail: ' bagi siswa, keluarga, dan masyarakat.',
+			body: misi.join(' '),
+			href: '#tentang',
+			iconPath: 'M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11'
+		},
+		{
+			eyebrow: 'Sejarah',
+			titleLead: 'Tiga dekade ',
+			titleHighlight: 'menumbuhkan',
+			titleTail: ' generasi pembelajar di Jakarta Selatan.',
+			body: sejarah.body,
+			href: '#tentang',
+			iconPath: 'M12 8v4l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
+		}
+	];
 </script>
 
 <Section id="tentang" tone="default" spacing="lg">
@@ -15,162 +57,86 @@
 		class="mx-auto"
 	/>
 
-	<!-- Sambutan kepala sekolah -->
-	<div use:reveal class="mt-16 grid items-center gap-10 lg:grid-cols-[2fr_3fr]">
-		<div class="relative">
-			<div
-				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-primary-200/60 via-warm-200/40 to-transparent blur-xl"
-				aria-hidden="true"
-			></div>
-			<div
-				class="aspect-[4/5] w-full overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-xl shadow-neutral-900/10"
-			>
-				<img
-					src={principal.photo}
-					alt="Foto {principal.name}, {principal.title} {site.name}"
-					class="h-full w-full object-cover"
-					loading="lazy"
-				/>
-			</div>
+	<!-- Principal lead block: a flat blockquote, no gradient or heavy shadow. -->
+	<div
+		use:reveal
+		class="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center sm:gap-8"
+	>
+		<div
+			class="size-20 overflow-hidden rounded-[14px] border border-neutral-200 bg-neutral-100 sm:size-24"
+		>
+			<img
+				src={principal.photo}
+				alt="Foto {principal.name}, {principal.title} {site.name}"
+				class="h-full w-full object-cover"
+				loading="lazy"
+			/>
 		</div>
-
-		<div use:reveal={{ delay: 120 }}>
-			<span
-				class="inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3 py-1 font-mono text-xs font-semibold tracking-wider text-primary-700 uppercase"
-			>
-				<span class="size-1.5 rounded-full bg-primary-500"></span>
-				Sambutan Kepala Sekolah
-			</span>
-
-			<blockquote class="mt-5 text-pretty text-xl leading-relaxed text-neutral-700 sm:text-2xl">
-				<svg
-					viewBox="0 0 24 24"
-					aria-hidden="true"
-					class="mb-3 size-8 text-primary-500"
-					fill="currentColor"
-				>
-					<path
-						d="M7.17 6A5.17 5.17 0 0 0 2 11.17V18h6v-6H5.5A2.5 2.5 0 0 1 8 9.5V6H7.17Zm10 0A5.17 5.17 0 0 0 12 11.17V18h6v-6h-2.5A2.5 2.5 0 0 1 18 9.5V6h-.83Z"
-					/>
-				</svg>
-				{principal.greeting}
-			</blockquote>
-
-			<div class="mt-6 flex items-center gap-3">
-				<div
-					class="grid size-10 place-items-center rounded-full bg-gradient-to-br from-primary-500 to-panel-800 font-bold text-white"
-					aria-hidden="true"
-				>
-					{principal.name.charAt(0)}
-				</div>
-				<div>
-					<p class="font-semibold text-neutral-900">{principal.name}</p>
-					<p class="text-sm text-neutral-500">{principal.title} · {site.name}</p>
-				</div>
-			</div>
-		</div>
+		<blockquote class="text-pretty text-base leading-relaxed text-neutral-700">
+			<p>“{principal.greeting}”</p>
+			<footer class="mt-3 text-sm text-neutral-500">
+				— {principal.name}, {principal.title}
+			</footer>
+		</blockquote>
 	</div>
 
-	<!-- Visi & Misi -->
-	<div class="mt-24 grid gap-6 md:grid-cols-2">
-		<div use:reveal>
-			<Card variant="default" padding="lg" class="h-full">
-				<div class="flex items-center gap-3">
+	<!-- DESIGN.md feature card grid: 3 columns desktop, 1 column mobile. -->
+	<div class="mt-14 grid gap-5 md:grid-cols-3 md:gap-6">
+		{#each cards as card, i (card.eyebrow)}
+			<a
+				use:reveal={{ delay: i * 80 }}
+				href={card.href}
+				class="group flex flex-col gap-5 rounded-md border border-neutral-200 bg-neutral-50 p-6 transition hover:border-primary-300 hover:bg-white"
+			>
+				<div class="flex items-start justify-between gap-4">
 					<span
-						class="grid size-10 place-items-center rounded-xl bg-primary-100 text-primary-700"
+						class="grid size-10 place-items-center rounded-md border border-neutral-200 bg-white text-primary-600"
 						aria-hidden="true"
 					>
 						<svg
 							viewBox="0 0 24 24"
 							fill="none"
 							stroke="currentColor"
-							stroke-width="2"
+							stroke-width="1.75"
 							stroke-linecap="round"
 							stroke-linejoin="round"
 							class="size-5"
 						>
-							<circle cx="12" cy="12" r="3" />
-							<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+							<path d={card.iconPath} />
 						</svg>
 					</span>
-					<h3 class="font-mono text-xs font-bold tracking-[0.2em] text-primary-700 uppercase">Visi</h3>
-				</div>
-				<p class="mt-5 text-pretty text-lg leading-relaxed text-neutral-800">{visi}</p>
-			</Card>
-		</div>
-
-		<div use:reveal={{ delay: 120 }}>
-			<Card variant="default" padding="lg" class="h-full">
-				<div class="flex items-center gap-3">
 					<span
-						class="grid size-10 place-items-center rounded-xl bg-warm-100 text-warm-700"
-						aria-hidden="true"
+						class="text-xs font-semibold tracking-[0.18em] text-neutral-500 uppercase"
 					>
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="size-5"
-						>
-							<path d="m5 12 5 5L20 7" />
-						</svg>
+						{card.eyebrow}
 					</span>
-					<h3 class="font-mono text-xs font-bold tracking-[0.2em] text-warm-700 uppercase">Misi</h3>
 				</div>
-				<ul class="mt-5 space-y-3 text-neutral-700">
-					{#each misi as item, i (i)}
-						<li class="flex gap-3">
-							<span
-								class="mt-1 grid size-5 shrink-0 place-items-center rounded-full bg-warm-100 text-[10px] font-bold text-warm-700"
-								aria-hidden="true"
-							>
-								{i + 1}
-							</span>
-							<span class="leading-relaxed">{item}</span>
-						</li>
-					{/each}
-				</ul>
-			</Card>
-		</div>
-	</div>
 
-	<!-- Sejarah singkat -->
-	<div use:reveal class="mt-24 grid items-center gap-10 lg:grid-cols-[3fr_2fr]">
-		<div use:reveal>
-			<span
-				class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 font-mono text-xs font-semibold tracking-wider text-neutral-600 uppercase"
-			>
-				<span class="size-1.5 rounded-full bg-neutral-400"></span>
-				Sejarah Singkat
-			</span>
-			<h3
-				class="mt-5 text-balance text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl"
-			>
-				{sejarah.headline}
-			</h3>
-			<p class="mt-5 text-pretty text-base leading-relaxed text-neutral-600 sm:text-lg">
-				{sejarah.body}
-			</p>
-		</div>
+				<h3 class="text-lg font-semibold leading-snug text-neutral-900">
+					{card.titleLead}<span class="text-primary-600">{card.titleHighlight}</span>{card.titleTail}
+				</h3>
 
-		<div use:reveal={{ delay: 120 }} class="relative">
-			<div
-				class="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-tr from-warm-100 via-primary-100 to-transparent blur-xl"
-				aria-hidden="true"
-			></div>
-			<div
-				class="aspect-[4/3] overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-100 shadow-xl shadow-neutral-900/10"
-			>
-				<img
-					src={sejarah.image}
-					alt="Ilustrasi gedung sekolah dari masa ke masa"
-					class="h-full w-full object-cover"
-					loading="lazy"
-				/>
-			</div>
-		</div>
+				<p class="line-clamp-4 text-sm leading-relaxed text-neutral-600">
+					{card.body}
+				</p>
+
+				<span
+					class="mt-auto inline-grid size-10 place-items-center rounded-pill border border-primary-600 text-primary-600 transition group-hover:bg-primary-600 group-hover:text-white"
+					aria-hidden="true"
+				>
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="size-4"
+					>
+						<path d="M5 12h14M13 5l7 7-7 7" />
+					</svg>
+				</span>
+			</a>
+		{/each}
 	</div>
 </Section>
