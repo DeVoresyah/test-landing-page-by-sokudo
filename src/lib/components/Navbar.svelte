@@ -5,15 +5,38 @@
 	import Logo from './Logo.svelte';
 
 	let open = $state(false);
-	let scrolled = $state(false);
+	let activeId = $state('beranda');
 
 	onMount(() => {
-		const onScroll = () => {
-			scrolled = window.scrollY > 8;
-		};
-		onScroll();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		return () => window.removeEventListener('scroll', onScroll);
+		const ids = nav.map((n) => n.href.replace(/^#/, ''));
+		const sections = ids
+			.map((id) => document.getElementById(id))
+			.filter((el): el is HTMLElement => el !== null);
+
+		if (sections.length === 0) return;
+
+		const visibility = new Map<string, number>();
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					visibility.set(entry.target.id, entry.intersectionRatio);
+				}
+				let bestId = activeId;
+				let bestRatio = 0;
+				for (const [id, ratio] of visibility) {
+					if (ratio > bestRatio) {
+						bestRatio = ratio;
+						bestId = id;
+					}
+				}
+				if (bestRatio > 0) activeId = bestId;
+			},
+			{ rootMargin: '-72px 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+		);
+
+		for (const section of sections) observer.observe(section);
+		return () => observer.disconnect();
 	});
 
 	$effect(() => {
@@ -35,19 +58,20 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<header
-	class="sticky top-0 z-40 w-full border-b transition-colors duration-normal {scrolled
-		? 'border-neutral-200 bg-white/85 shadow-sm backdrop-blur'
-		: 'border-transparent bg-white/60 backdrop-blur'}"
->
-	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
-		<Logo />
+<header class="sticky top-0 z-40 w-full border-b border-neutral-200 bg-white">
+	<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+		<Logo tone="flat" />
 
 		<nav aria-label="Navigasi utama" class="hidden items-center gap-8 lg:flex">
 			{#each nav as item (item.href)}
+				{@const id = item.href.replace(/^#/, '')}
+				{@const isActive = id === activeId}
 				<a
 					href={item.href}
-					class="text-sm font-medium text-neutral-700 transition hover:text-primary-700"
+					aria-current={isActive ? 'page' : undefined}
+					class="text-sm font-medium transition-colors {isActive
+						? 'text-primary-600'
+						: 'text-neutral-500 hover:text-neutral-900'}"
 				>
 					{item.label}
 				</a>
@@ -103,15 +127,15 @@
 	<button
 		type="button"
 		aria-label="Tutup menu"
-		class="fixed inset-0 z-30 bg-neutral-900/40 backdrop-blur-sm lg:hidden"
+		class="fixed inset-0 z-30 bg-neutral-900/40 lg:hidden"
 		onclick={close}
 	></button>
 	<aside
 		id="mobile-drawer"
-		class="fixed inset-y-0 right-0 z-40 flex w-[80%] max-w-xs flex-col bg-white shadow-2xl lg:hidden"
+		class="fixed inset-y-0 right-0 z-40 flex w-[80%] max-w-xs flex-col border-l border-neutral-200 bg-white lg:hidden"
 	>
-		<div class="flex h-16 items-center justify-between border-b border-neutral-200 px-6">
-			<Logo size="sm" />
+		<div class="flex h-20 items-center justify-between border-b border-neutral-200 px-6">
+			<Logo tone="flat" size="sm" />
 			<button
 				type="button"
 				class="grid size-10 place-items-center rounded-lg text-neutral-700 transition hover:bg-neutral-100"
@@ -135,10 +159,15 @@
 		</div>
 		<nav aria-label="Navigasi mobile" class="flex flex-1 flex-col gap-1 px-4 py-6">
 			{#each nav as item (item.href)}
+				{@const id = item.href.replace(/^#/, '')}
+				{@const isActive = id === activeId}
 				<a
 					href={item.href}
 					onclick={close}
-					class="rounded-lg px-3 py-3 text-base font-medium text-neutral-800 transition hover:bg-primary-50 hover:text-primary-700"
+					aria-current={isActive ? 'page' : undefined}
+					class="rounded-lg px-3 py-3 text-base font-medium transition-colors {isActive
+						? 'text-primary-600'
+						: 'text-neutral-600 hover:text-neutral-900'}"
 				>
 					{item.label}
 				</a>

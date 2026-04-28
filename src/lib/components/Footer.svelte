@@ -1,47 +1,68 @@
 <script lang="ts">
 	import { site, nav } from '$lib/config/site';
 	import Container from './Container.svelte';
+	import Logo from './Logo.svelte';
 
 	const year = new Date().getFullYear();
+	const phoneTel = site.contact.phone.replace(/\s+/g, '');
+	const waNumber = site.contact.whatsapp.replace(/[^0-9]/g, '');
 </script>
 
-<footer class="bg-neutral-900 text-neutral-300">
+<footer class="border-t border-neutral-200 bg-white text-neutral-700">
 	<Container>
-		<div class="grid gap-12 py-16 lg:grid-cols-4 lg:gap-8 lg:py-20">
-			<div class="lg:col-span-2">
-				<a href="/" class="inline-flex items-center gap-2 font-bold text-white">
-					<span
-						class="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-primary-500 to-panel-800 text-white shadow-md shadow-primary-500/30"
-					>
-						{site.logoMark}
-					</span>
-					<span class="text-lg tracking-tight">{site.name}</span>
-				</a>
-				<p class="mt-4 max-w-md text-sm leading-relaxed text-neutral-400">
-					{site.description}
-				</p>
-				<ul class="mt-6 flex flex-wrap gap-3">
-					{#each site.social as link (link.href)}
-						<li>
+		<div class="grid gap-12 py-14 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12">
+			<div>
+				<Logo tone="flat" />
+				<address class="mt-5 space-y-1 text-sm not-italic leading-relaxed text-neutral-600">
+					<p>
+						{site.address.street}<br />
+						{site.address.city}, {site.address.postal}<br />
+						{site.address.country}
+					</p>
+				</address>
+				<dl class="mt-4 space-y-1 text-sm">
+					<div class="flex gap-2">
+						<dt class="text-neutral-500">Telepon</dt>
+						<dd>
+							<a href="tel:{phoneTel}" class="text-neutral-700 hover:text-primary-600">
+								{site.contact.phone}
+							</a>
+						</dd>
+					</div>
+					<div class="flex gap-2">
+						<dt class="text-neutral-500">WhatsApp</dt>
+						<dd>
 							<a
-								href={link.href}
+								href="https://wa.me/{waNumber}"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium text-neutral-200 transition hover:border-primary-400 hover:bg-primary-500/10 hover:text-white"
+								class="text-neutral-700 hover:text-primary-600"
 							>
-								{link.label}
+								{site.contact.whatsapp}
 							</a>
-						</li>
-					{/each}
-				</ul>
+						</dd>
+					</div>
+					<div class="flex gap-2">
+						<dt class="text-neutral-500">Email</dt>
+						<dd>
+							<a href="mailto:{site.contact.email}" class="text-neutral-700 hover:text-primary-600">
+								{site.contact.email}
+							</a>
+						</dd>
+					</div>
+				</dl>
+				<p class="mt-4 inline-flex items-center gap-2 text-xs text-neutral-500">
+					<span class="size-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+					PPDB 2026 / 2027 dibuka
+				</p>
 			</div>
 
 			<div>
-				<h3 class="font-mono text-sm font-semibold uppercase tracking-wider text-white">Navigasi</h3>
+				<h3 class="text-xs font-semibold uppercase tracking-wider text-neutral-900">Navigasi</h3>
 				<ul class="mt-4 space-y-2 text-sm">
 					{#each nav as item (item.href)}
 						<li>
-							<a href={item.href} class="text-neutral-400 transition hover:text-white">
+							<a href={item.href} class="text-neutral-600 transition-colors hover:text-primary-600">
 								{item.label}
 							</a>
 						</li>
@@ -50,43 +71,26 @@
 			</div>
 
 			<div>
-				<h3 class="font-mono text-sm font-semibold uppercase tracking-wider text-white">Kontak</h3>
-				<address class="mt-4 space-y-3 text-sm not-italic text-neutral-400">
-					<p>
-						{site.address.street}<br />
-						{site.address.city}<br />
-						{site.address.postal}<br />
-						{site.address.country}
-					</p>
-					<p class="space-y-1">
-						<span class="block">
-							<span class="text-neutral-500">Telepon:</span>
-							<a href="tel:{site.contact.phone.replace(/\s+/g, '')}" class="hover:text-white">
-								{site.contact.phone}
-							</a>
-						</span>
-						<span class="block">
-							<span class="text-neutral-500">WhatsApp:</span>
+				<h3 class="text-xs font-semibold uppercase tracking-wider text-neutral-900">Ikuti Kami</h3>
+				<ul class="mt-4 space-y-2 text-sm">
+					{#each site.social as link (link.href)}
+						<li>
 							<a
-								href="https://wa.me/{site.contact.whatsapp.replace(/[^0-9]/g, '')}"
-								class="hover:text-white"
+								href={link.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-neutral-600 transition-colors hover:text-primary-600"
 							>
-								{site.contact.whatsapp}
+								{link.label}
 							</a>
-						</span>
-						<span class="block">
-							<span class="text-neutral-500">Email:</span>
-							<a href="mailto:{site.contact.email}" class="hover:text-white">
-								{site.contact.email}
-							</a>
-						</span>
-					</p>
-				</address>
+						</li>
+					{/each}
+				</ul>
 			</div>
 		</div>
 
 		<div
-			class="flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between"
+			class="flex flex-col gap-2 border-t border-neutral-200 py-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between"
 		>
 			<p>© {year} {site.name}. Hak cipta dilindungi undang-undang.</p>
 			<p>Dibuat dengan dedikasi untuk pendidikan Indonesia.</p>
