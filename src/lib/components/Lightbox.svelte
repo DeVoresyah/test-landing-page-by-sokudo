@@ -74,7 +74,7 @@
 		>
 			<button
 				type="button"
-				class="absolute right-0 -top-12 inline-flex size-10 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+				class="absolute right-0 -top-12 inline-flex size-10 items-center justify-center rounded-full border border-primary-500 bg-white text-primary-600 transition hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
 				aria-label="Tutup"
 				onclick={onClose}
 			>
@@ -85,7 +85,7 @@
 
 			{#key current.id}
 				<figure
-					class="relative flex max-h-[78vh] w-full items-center justify-center overflow-hidden rounded-2xl bg-neutral-900 shadow-2xl"
+					class="relative flex max-h-[78vh] w-full items-center justify-center overflow-hidden rounded-[14px] bg-neutral-900"
 					in:fade={{ duration: motionFast }}
 				>
 					<img
@@ -111,7 +111,7 @@
 			{#if items.length > 1}
 				<button
 					type="button"
-					class="absolute left-2 top-1/2 -translate-y-1/2 inline-flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-4"
+					class="absolute left-2 top-1/2 -translate-y-1/2 inline-flex size-12 items-center justify-center rounded-full border border-primary-500 bg-white text-primary-600 transition hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:left-4"
 					aria-label="Sebelumnya"
 					onclick={prev}
 				>
@@ -121,7 +121,7 @@
 				</button>
 				<button
 					type="button"
-					class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-4"
+					class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex size-12 items-center justify-center rounded-full border border-primary-500 bg-white text-primary-600 transition hover:bg-primary-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white sm:right-4"
 					aria-label="Berikutnya"
 					onclick={next}
 				>
@@ -129,6 +129,28 @@
 						><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" /></svg
 					>
 				</button>
+
+				{#if items.length <= 10}
+					<div
+						class="flex items-center gap-1.5"
+						role="tablist"
+						aria-label="Pilih foto"
+					>
+						{#each items as it, i (it.id)}
+							{@const isActive = i === index}
+							<button
+								type="button"
+								role="tab"
+								aria-selected={isActive}
+								aria-label="Foto {i + 1}"
+								onclick={() => onIndexChange(i)}
+								class="h-1.5 rounded-full transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white {isActive
+									? 'w-6 bg-primary-500'
+									: 'w-1.5 bg-neutral-400/70 hover:bg-neutral-300'}"
+							></button>
+						{/each}
+					</div>
+				{/if}
 			{/if}
 		</div>
 	</div>

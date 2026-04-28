@@ -94,7 +94,7 @@
 	</div>
 </Section>
 
-<Section id="faq" tone="muted">
+<Section id="faq" tone="default">
 	<div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
 		<SectionHeading
 			eyebrow="Pertanyaan Umum"
@@ -119,7 +119,7 @@
 	</div>
 </Section>
 
-<Section id="kontak" tone="default">
+<Section id="kontak" tone="muted">
 	<SectionHeading
 		eyebrow="Kontak"
 		title="Datang berkunjung atau hubungi kami"
@@ -128,166 +128,162 @@
 		class="mx-auto"
 	/>
 
-	<div class="mt-12 grid gap-8 lg:grid-cols-5 lg:gap-10">
+	<div class="mt-12 grid gap-10 lg:grid-cols-5 lg:gap-14">
 		<div class="space-y-6 lg:col-span-2">
-			<Card padding="lg" class="h-full">
-				<h3 class="text-lg font-bold text-neutral-900">Informasi Sekolah</h3>
+			<h3 class="text-lg font-semibold text-neutral-900">Informasi Sekolah</h3>
 
-				<dl class="mt-6 space-y-5 text-sm">
-					<div>
-						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Alamat</dt>
-						<dd class="mt-1 not-italic text-neutral-700">
-							{site.address.street}<br />
-							{site.address.city}, {site.address.postal}<br />
-							{site.address.country}
-						</dd>
-					</div>
-
-					<div>
-						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Telepon</dt>
-						<dd class="mt-1 text-neutral-700">
-							<a href="tel:{phoneTel}" class="hover:text-primary-700">{site.contact.phone}</a>
-							<span class="text-neutral-400"> · </span>
-							<a
-								href="https://wa.me/{waNumber}"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="hover:text-primary-700"
-							>
-								WhatsApp {site.contact.whatsapp}
-							</a>
-						</dd>
-					</div>
-
-					<div>
-						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Email</dt>
-						<dd class="mt-1 text-neutral-700">
-							<a href="mailto:{site.contact.email}" class="hover:text-primary-700">
-								{site.contact.email}
-							</a>
-						</dd>
-					</div>
-
-					<div>
-						<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">
-							Jam Operasional
-						</dt>
-						<dd class="mt-1 space-y-1 text-neutral-700">
-							{#each site.hours as h (h.days)}
-								<div class="flex justify-between gap-4">
-									<span>{h.days}</span>
-									<span class="font-medium text-neutral-900">{h.time}</span>
-								</div>
-							{/each}
-						</dd>
-					</div>
-				</dl>
-
-				<div class="mt-6 overflow-hidden rounded-xl border border-neutral-200">
-					<iframe
-						title="Peta lokasi {site.name}"
-						src={mapsEmbed}
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade"
-						class="block aspect-[4/3] w-full"
-					></iframe>
+			<dl class="space-y-5 text-sm">
+				<div>
+					<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Alamat</dt>
+					<dd class="mt-1 not-italic text-neutral-700">
+						{site.address.street}<br />
+						{site.address.city}, {site.address.postal}<br />
+						{site.address.country}
+					</dd>
 				</div>
-			</Card>
+
+				<div>
+					<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Telepon</dt>
+					<dd class="mt-1 text-neutral-700">
+						<a href="tel:{phoneTel}" class="hover:text-primary-600">{site.contact.phone}</a>
+						<span class="text-neutral-400"> · </span>
+						<a
+							href="https://wa.me/{waNumber}"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="hover:text-primary-600"
+						>
+							WhatsApp {site.contact.whatsapp}
+						</a>
+					</dd>
+				</div>
+
+				<div>
+					<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Email</dt>
+					<dd class="mt-1 text-neutral-700">
+						<a href="mailto:{site.contact.email}" class="hover:text-primary-600">
+							{site.contact.email}
+						</a>
+					</dd>
+				</div>
+
+				<div>
+					<dt class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">
+						Jam Operasional
+					</dt>
+					<dd class="mt-1 space-y-1 text-neutral-700">
+						{#each site.hours as h (h.days)}
+							<div class="flex justify-between gap-4">
+								<span>{h.days}</span>
+								<span class="font-medium text-neutral-900">{h.time}</span>
+							</div>
+						{/each}
+					</dd>
+				</div>
+			</dl>
+
+			<div class="overflow-hidden rounded-[14px] border border-neutral-200">
+				<iframe
+					title="Peta lokasi {site.name}"
+					src={mapsEmbed}
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"
+					class="block aspect-[4/3] w-full"
+				></iframe>
+			</div>
 		</div>
 
 		<div class="lg:col-span-3">
-			<Card padding="lg" class="h-full">
-				<h3 class="text-lg font-bold text-neutral-900">Kirim Pesan</h3>
-				<p class="mt-1 text-sm text-neutral-600">
-					Kami biasanya membalas dalam 1×24 jam pada hari kerja.
-				</p>
+			<h3 class="text-lg font-semibold text-neutral-900">Kirim Pesan</h3>
+			<p class="mt-1 text-sm text-neutral-600">
+				Kami biasanya membalas dalam 1×24 jam pada hari kerja.
+			</p>
 
-				{#if form?.success}
-					<div
-						role="status"
-						class="mt-5 rounded-xl border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-800"
-					>
-						Terima kasih, {form.values.nama}. Pesan Anda sudah kami terima — tim admisi akan segera
-						menghubungi.
-					</div>
-				{/if}
-
-				<form
-					method="POST"
-					action="?/contact"
-					class="mt-6 grid gap-5"
-					novalidate
+			{#if form?.success}
+				<div
+					role="status"
+					class="mt-5 rounded-md border border-primary-200 bg-primary-50 px-4 py-3 text-sm text-primary-800"
 				>
-					<div class="grid gap-5 sm:grid-cols-2">
-						<div>
-							<label for="contact-nama" class="text-sm font-semibold text-neutral-800">
-								Nama lengkap
-							</label>
-							<input
-								id="contact-nama"
-								name="nama"
-								type="text"
-								required
-								autocomplete="name"
-								value={form?.values?.nama ?? ''}
-								aria-invalid={form?.errors?.nama ? 'true' : undefined}
-								aria-describedby={form?.errors?.nama ? 'err-nama' : undefined}
-								class="mt-2 block w-full rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 shadow-sm transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
-								placeholder="Nama Anda"
-							/>
-							{#if form?.errors?.nama}
-								<p id="err-nama" class="mt-1.5 text-xs text-red-600">{form.errors.nama}</p>
-							{/if}
-						</div>
+					Terima kasih, {form.values.nama}. Pesan Anda sudah kami terima — tim admisi akan segera
+					menghubungi.
+				</div>
+			{/if}
 
-						<div>
-							<label for="contact-email" class="text-sm font-semibold text-neutral-800">
-								Email
-							</label>
-							<input
-								id="contact-email"
-								name="email"
-								type="email"
-								required
-								autocomplete="email"
-								value={form?.values?.email ?? ''}
-								aria-invalid={form?.errors?.email ? 'true' : undefined}
-								aria-describedby={form?.errors?.email ? 'err-email' : undefined}
-								class="mt-2 block w-full rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 shadow-sm transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
-								placeholder="anda@email.com"
-							/>
-							{#if form?.errors?.email}
-								<p id="err-email" class="mt-1.5 text-xs text-red-600">{form.errors.email}</p>
-							{/if}
-						</div>
-					</div>
-
+			<form
+				method="POST"
+				action="?/contact"
+				class="mt-6 grid gap-5"
+				novalidate
+			>
+				<div class="grid gap-5 sm:grid-cols-2">
 					<div>
-						<label for="contact-pesan" class="text-sm font-semibold text-neutral-800">Pesan</label>
-						<textarea
-							id="contact-pesan"
-							name="pesan"
-							rows="5"
+						<label for="contact-nama" class="text-sm font-semibold text-neutral-800">
+							Nama lengkap
+						</label>
+						<input
+							id="contact-nama"
+							name="nama"
+							type="text"
 							required
-							value={form?.values?.pesan ?? ''}
-							aria-invalid={form?.errors?.pesan ? 'true' : undefined}
-							aria-describedby={form?.errors?.pesan ? 'err-pesan' : undefined}
-							class="mt-2 block w-full resize-y rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-900 shadow-sm transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200"
-							placeholder="Tuliskan pertanyaan atau kebutuhan Anda…"
-						></textarea>
-						{#if form?.errors?.pesan}
-							<p id="err-pesan" class="mt-1.5 text-xs text-red-600">{form.errors.pesan}</p>
+							autocomplete="name"
+							value={form?.values?.nama ?? ''}
+							aria-invalid={form?.errors?.nama ? 'true' : undefined}
+							aria-describedby={form?.errors?.nama ? 'err-nama' : undefined}
+							class="mt-2 block min-h-10 w-full rounded-sm border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+							placeholder="Nama Anda"
+						/>
+						{#if form?.errors?.nama}
+							<p id="err-nama" class="mt-1.5 text-xs text-red-600">{form.errors.nama}</p>
 						{/if}
 					</div>
 
-					<div class="flex flex-wrap items-center gap-3 pt-1">
-						<Button type="submit" size="lg">Kirim Pesan</Button>
-						<p class="text-xs text-neutral-500">
-							Dengan mengirim, Anda menyetujui kebijakan privasi kami.
-						</p>
+					<div>
+						<label for="contact-email" class="text-sm font-semibold text-neutral-800">
+							Email
+						</label>
+						<input
+							id="contact-email"
+							name="email"
+							type="email"
+							required
+							autocomplete="email"
+							value={form?.values?.email ?? ''}
+							aria-invalid={form?.errors?.email ? 'true' : undefined}
+							aria-describedby={form?.errors?.email ? 'err-email' : undefined}
+							class="mt-2 block min-h-10 w-full rounded-sm border border-neutral-200 bg-white px-3 text-sm text-neutral-900 transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+							placeholder="anda@email.com"
+						/>
+						{#if form?.errors?.email}
+							<p id="err-email" class="mt-1.5 text-xs text-red-600">{form.errors.email}</p>
+						{/if}
 					</div>
-				</form>
-			</Card>
+				</div>
+
+				<div>
+					<label for="contact-pesan" class="text-sm font-semibold text-neutral-800">Pesan</label>
+					<textarea
+						id="contact-pesan"
+						name="pesan"
+						rows="5"
+						required
+						value={form?.values?.pesan ?? ''}
+						aria-invalid={form?.errors?.pesan ? 'true' : undefined}
+						aria-describedby={form?.errors?.pesan ? 'err-pesan' : undefined}
+						class="mt-2 block w-full resize-y rounded-sm border border-neutral-200 bg-white px-3 py-2.5 text-sm text-neutral-900 transition placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+						placeholder="Tuliskan pertanyaan atau kebutuhan Anda…"
+					></textarea>
+					{#if form?.errors?.pesan}
+						<p id="err-pesan" class="mt-1.5 text-xs text-red-600">{form.errors.pesan}</p>
+					{/if}
+				</div>
+
+				<div class="flex flex-wrap items-center gap-3 pt-1">
+					<Button type="submit" size="lg">Kirim Pesan</Button>
+					<p class="text-xs text-neutral-500">
+						Dengan mengirim, Anda menyetujui kebijakan privasi kami.
+					</p>
+				</div>
+			</form>
 		</div>
 	</div>
 </Section>

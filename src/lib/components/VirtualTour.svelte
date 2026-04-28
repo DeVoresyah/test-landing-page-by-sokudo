@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class="relative aspect-video w-full overflow-hidden rounded-3xl bg-panel-900 shadow-xl shadow-panel-900/20 ring-1 ring-neutral-200/60"
+	class="relative aspect-video w-full overflow-hidden rounded-[14px] border border-neutral-200 bg-panel-900"
 >
 	{#if loaded}
 		<iframe
@@ -63,7 +63,7 @@
 
 			<div class="absolute inset-0 flex items-center justify-center">
 				<span
-					class="inline-flex size-20 items-center justify-center rounded-full bg-white/95 text-primary-700 shadow-2xl ring-1 ring-white/40 transition group-hover:scale-110 group-hover:bg-white sm:size-24"
+					class="inline-flex size-20 items-center justify-center rounded-full bg-white text-primary-600 transition group-hover:scale-110 sm:size-24"
 				>
 					<svg viewBox="0 0 24 24" fill="currentColor" class="size-8 translate-x-0.5 sm:size-10">
 						<path d="M8 5v14l11-7z" />
