@@ -8,6 +8,7 @@ A landing page for an Indonesian high school, built with **SvelteKit 5**, **Tail
 - [Tailwind CSS v4](https://tailwindcss.com/) (config-less, via `@theme` in `src/app.css`)
 - TypeScript
 - [Inter](https://fonts.google.com/specimen/Inter) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) via `@fontsource`
+- [Supabase](https://supabase.com/) client helpers for registration and server-side data access
 - Vite 6
 - `@sveltejs/adapter-cloudflare` (Cloudflare Pages)
 
@@ -27,12 +28,33 @@ A landing page for an Indonesian high school, built with **SvelteKit 5**, **Tail
 # 1. Install dependencies
 pnpm install
 
-# 2. Start the dev server (http://localhost:5173)
+# 2. Copy local environment placeholders
+cp .env.example .env
+
+# 3. Fill in Supabase credentials in .env
+
+# 4. Start the dev server (http://localhost:5173)
 pnpm dev
 
-# 3. Open in browser automatically
+# 5. Open in browser automatically
 pnpm dev --open
 ```
+
+## Supabase setup
+
+Create a Supabase project for the school registration backend, then copy credentials from Supabase → Project Settings → API:
+
+```bash
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+- `SUPABASE_URL` and `SUPABASE_ANON_KEY` are safe to expose to browser code and are returned from `src/routes/+layout.server.ts` as `data.supabase` when configured.
+- `SUPABASE_SERVICE_ROLE_KEY` is server-only. Never import `$lib/server/supabase` from `.svelte` components or browser modules.
+- Local development reads `.env` through SvelteKit. Cloudflare Pages must define the same three variables in the project environment settings; store the service-role key as a secret.
+- Browser code can create a client with `createSupabaseBrowserClient(data.supabase)` from `$lib` after checking `data.supabase` is not `null`.
+- Server routes and actions should use `createSupabaseServerClient(event)` for anon-policy access or `createSupabaseServiceRoleClient(event)` for trusted admin writes.
 
 ## Scripts
 
@@ -77,9 +99,15 @@ src/
 │   │   ├── achievements.ts
 │   │   ├── gallery.ts
 │   │   └── faq.ts
+│   ├── server/
+│   │   └── supabase.ts         # Server-only Supabase client factories
+│   ├── supabase/
+│   │   ├── browser.ts          # Browser Supabase client factory
+│   │   └── types.ts            # Shared Supabase config types
 │   └── index.ts                # Re-exports
 ├── routes/
 │   ├── +layout.svelte
+│   ├── +layout.server.ts       # Exposes safe Supabase browser config
 │   ├── +page.svelte            # Landing page composition
 │   └── +page.server.ts         # Contact form action (?/contact)
 static/
@@ -115,6 +143,7 @@ compatibility_flags = ["nodejs_compat"]
 3. Build command: `pnpm build`
 4. Build output directory: `.svelte-kit/cloudflare`
 5. Set Node version to 20 in environment variables (`NODE_VERSION=20`).
+6. Add `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` to Cloudflare Pages environment variables. Keep the service-role key secret.
 
 **Option B — Wrangler CLI:**
 

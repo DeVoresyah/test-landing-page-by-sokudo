@@ -6,7 +6,12 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		interface Platform {
-			env?: Record<string, unknown>;
+			env?: {
+				SUPABASE_URL?: string;
+				SUPABASE_ANON_KEY?: string;
+				SUPABASE_SERVICE_ROLE_KEY?: string;
+				[key: string]: unknown;
+			};
 			cf?: CfProperties;
 			ctx?: ExecutionContext;
 		}

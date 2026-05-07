@@ -24,6 +24,9 @@ export { default as VirtualTour } from './components/VirtualTour.svelte';
 export { reveal } from './actions/reveal';
 export type { RevealOptions } from './actions/reveal';
 
+export { createSupabaseBrowserClient } from './supabase/browser';
+export type { SupabaseBrowserConfig } from './supabase/types';
+
 export {
 	ctaPrimary,
 	ctaSecondary,
