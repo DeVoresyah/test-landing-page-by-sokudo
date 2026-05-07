@@ -25,7 +25,16 @@ export { reveal } from './actions/reveal';
 export type { RevealOptions } from './actions/reveal';
 
 export { createSupabaseBrowserClient } from './supabase/browser';
+export { getSupabaseClient, resetSupabaseClient } from './supabase/client';
 export type { SupabaseBrowserConfig } from './supabase/types';
+
+export {
+	getSessionState,
+	initAuth,
+	teardownAuth,
+	signOut,
+	requireSession
+} from './auth/session.svelte';
 
 export {
 	ctaPrimary,
