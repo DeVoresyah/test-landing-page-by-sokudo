@@ -1,7 +1,20 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import Button from '$lib/components/Button.svelte';
 	import Container from '$lib/components/Container.svelte';
 	import { programs } from '$lib/data/programs';
+	import { getSupabaseClient } from '$lib/supabase/client';
+	import { requireSession } from '$lib/auth/session.svelte';
+	import {
+		describeRegistrationError,
+		fetchMyRegistration,
+		saveMyRegistration,
+		type Registration,
+		type RegistrationInput
+	} from '$lib/supabase/registrations';
+
+	let { data } = $props();
 
 	type Values = {
 		full_name: string;
@@ -59,6 +72,62 @@
 	let submitAttempted = $state(false);
 	let submitting = $state(false);
 	let submitted = $state(false);
+
+	// Page-level lifecycle: gating on auth, loading the existing row, and
+	// surfacing server errors that aren't tied to a single field.
+	let loading = $state(true);
+	let configMissing = $state(false);
+	let serverError = $state('');
+	let isReturning = $state(false);
+
+	function fillFrom(reg: Registration) {
+		values = {
+			full_name: reg.full_name,
+			nisn: reg.nisn,
+			birth_place: reg.birth_place,
+			birth_date: reg.birth_date,
+			gender: reg.gender,
+			address: reg.address,
+			phone: reg.phone,
+			email: reg.email,
+			prior_school: reg.prior_school,
+			target_program: reg.target_program,
+			father_name: reg.father_name,
+			father_occupation: reg.father_occupation,
+			father_phone: reg.father_phone,
+			father_email: reg.father_email ?? '',
+			father_address: reg.father_address,
+			mother_name: reg.mother_name,
+			mother_occupation: reg.mother_occupation,
+			mother_phone: reg.mother_phone,
+			mother_email: reg.mother_email ?? '',
+			mother_address: reg.mother_address
+		};
+	}
+
+	onMount(async () => {
+		if (!data.supabase) {
+			configMissing = true;
+			loading = false;
+			return;
+		}
+
+		// Redirects to login when unauthenticated; only proceed with a session.
+		const session = await requireSession(data.supabase, $page.url.pathname);
+		if (!session) return;
+
+		const supabase = getSupabaseClient(data.supabase);
+		const { data: existing, error } = await fetchMyRegistration(supabase, session.user.id);
+
+		if (error) {
+			serverError = 'Gagal memuat data pendaftaran Anda. Muat ulang halaman untuk mencoba lagi.';
+		} else if (existing) {
+			fillFrom(existing);
+			isReturning = true;
+		}
+
+		loading = false;
+	});
 
 	// Matches the migration's CHECK regex so client errors don't drift from DB constraints.
 	const emailRe = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -119,9 +188,38 @@
 		touched[field] = true;
 	}
 
+	function toInput(v: Values): RegistrationInput {
+		// isValid has already guaranteed gender is non-empty before we get here.
+		return {
+			full_name: v.full_name.trim(),
+			nisn: v.nisn.trim(),
+			birth_place: v.birth_place.trim(),
+			birth_date: v.birth_date,
+			gender: v.gender as 'male' | 'female',
+			address: v.address.trim(),
+			phone: v.phone.trim(),
+			email: v.email.trim(),
+			prior_school: v.prior_school.trim(),
+			target_program: v.target_program.trim(),
+			father_name: v.father_name.trim(),
+			father_occupation: v.father_occupation.trim(),
+			father_phone: v.father_phone.trim(),
+			father_email: v.father_email.trim() || null,
+			father_address: v.father_address.trim(),
+			mother_name: v.mother_name.trim(),
+			mother_occupation: v.mother_occupation.trim(),
+			mother_phone: v.mother_phone.trim(),
+			mother_email: v.mother_email.trim() || null,
+			mother_address: v.mother_address.trim()
+		};
+	}
+
 	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 		submitAttempted = true;
+		submitted = false;
+		serverError = '';
+
 		if (!isValid) {
 			// Focus the first invalid field for accessibility.
 			const firstErrorKey = Object.keys(errors)[0];
@@ -132,13 +230,42 @@
 			}
 			return;
 		}
-		// Server submission is wired in a follow-up ticket; this UI ticket
-		// stops at validating and surfacing a confirmation state.
+
+		if (!data.supabase) {
+			serverError = 'Konfigurasi Supabase belum tersedia. Hubungi admin sekolah.';
+			return;
+		}
+
 		submitting = true;
-		await new Promise((r) => setTimeout(r, 250));
-		submitting = false;
-		submitted = true;
-		window.scrollTo({ top: 0, behavior: 'smooth' });
+		try {
+			const supabase = getSupabaseClient(data.supabase);
+			const session = await requireSession(data.supabase, $page.url.pathname);
+			if (!session) return;
+
+			const { data: saved, error } = await saveMyRegistration(
+				supabase,
+				session.user.id,
+				toInput(values),
+				isReturning
+			);
+
+			if (error) {
+				serverError = describeRegistrationError(error);
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+				return;
+			}
+
+			if (saved) fillFrom(saved);
+			isReturning = true;
+			submitted = true;
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		} catch (err) {
+			serverError =
+				err instanceof Error ? err.message : 'Gagal menyimpan data. Silakan coba lagi.';
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		} finally {
+			submitting = false;
+		}
 	}
 
 	const fieldClass =
@@ -167,34 +294,65 @@
 				Formulir Pendaftaran Siswa Baru
 			</h1>
 			<p class="max-w-2xl text-pretty text-base leading-relaxed text-neutral-600">
-				Lengkapi data pribadi calon siswa dan data orang tua/wali. Pastikan informasi yang
-				diberikan akurat — tim admisi akan menggunakan data ini untuk verifikasi dan komunikasi
-				selanjutnya.
+				{#if isReturning}
+					Anda sudah pernah mengirim pendaftaran. Perbarui data di bawah ini bila ada perubahan,
+					lalu simpan kembali. Anda juga dapat melihat ringkasan di
+					<a href="/register/status" class="font-semibold text-primary-700 underline-offset-4 hover:underline">halaman status</a>.
+				{:else}
+					Lengkapi data pribadi calon siswa dan data orang tua/wali. Pastikan informasi yang
+					diberikan akurat — tim admisi akan menggunakan data ini untuk verifikasi dan komunikasi
+					selanjutnya.
+				{/if}
 			</p>
 		</div>
 
-		{#if submitted}
+		{#if configMissing}
 			<div
-				role="status"
-				class="mt-8 rounded-md border border-primary-200 bg-primary-50 px-4 py-4 text-sm text-primary-800"
+				role="alert"
+				class="mt-8 rounded-md border border-red-200 bg-red-50 px-4 py-4 text-sm text-red-800"
 			>
-				<p class="font-semibold">Data berhasil divalidasi.</p>
-				<p class="mt-1 text-primary-900/80">
-					Terima kasih, {values.full_name}. Pengiriman ke server akan diaktifkan pada tahap
-					berikutnya.
-				</p>
+				Konfigurasi Supabase belum tersedia. Formulir tidak dapat dimuat — hubungi admin sekolah.
 			</div>
-		{/if}
-
-		<form class="mt-8 flex flex-col gap-10" novalidate onsubmit={handleSubmit}>
-			{#if submitAttempted && !isValid}
+		{:else if loading}
+			<div class="mt-12 flex items-center gap-3 text-sm text-neutral-500">
 				<div
-					role="alert"
-					class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+					class="size-5 animate-spin rounded-full border-2 border-neutral-200 border-t-primary-500"
+				></div>
+				Memuat formulir pendaftaran…
+			</div>
+		{:else}
+			{#if submitted}
+				<div
+					role="status"
+					class="mt-8 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm text-emerald-900"
 				>
-					Beberapa kolom belum terisi atau tidak valid. Silakan periksa kembali data Anda.
+					<p class="font-semibold">Pendaftaran berhasil disimpan.</p>
+					<p class="mt-1 text-emerald-800">
+						Terima kasih, {values.full_name}. Data Anda telah tersimpan dan dapat diperbarui kapan
+						saja selama masa pendaftaran. Lihat
+						<a href="/register/status" class="font-semibold underline underline-offset-4">ringkasan pendaftaran</a>.
+					</p>
 				</div>
 			{/if}
+
+			{#if serverError}
+				<div
+					role="alert"
+					class="mt-8 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+				>
+					{serverError}
+				</div>
+			{/if}
+
+			<form class="mt-8 flex flex-col gap-10" novalidate onsubmit={handleSubmit}>
+				{#if submitAttempted && !isValid}
+					<div
+						role="alert"
+						class="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+					>
+						Beberapa kolom belum terisi atau tidak valid. Silakan periksa kembali data Anda.
+					</div>
+				{/if}
 
 			<!-- Personal data -->
 			<fieldset class="flex flex-col gap-5 rounded-lg bg-white p-6 shadow-card lg:p-8">
@@ -626,15 +784,22 @@
 				</div>
 			</fieldset>
 
-			<div class="flex flex-wrap items-center gap-4">
-				<Button type="submit" size="lg" disabled={submitting}>
-					{submitting ? 'Memproses…' : 'Kirim Pendaftaran'}
-				</Button>
-				<p class="text-xs text-neutral-500">
-					Dengan mengirim, Anda menyatakan data yang diberikan benar dan menyetujui kebijakan
-					privasi kami.
-				</p>
-			</div>
-		</form>
+				<div class="flex flex-wrap items-center gap-4">
+					<Button type="submit" size="lg" disabled={submitting}>
+						{#if submitting}
+							Menyimpan…
+						{:else if isReturning}
+							Simpan Perubahan
+						{:else}
+							Kirim Pendaftaran
+						{/if}
+					</Button>
+					<p class="text-xs text-neutral-500">
+						Dengan mengirim, Anda menyatakan data yang diberikan benar dan menyetujui kebijakan
+						privasi kami.
+					</p>
+				</div>
+			</form>
+		{/if}
 	</Container>
 </section>
