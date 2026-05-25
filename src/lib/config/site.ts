@@ -47,7 +47,7 @@ export const nav: NavItem[] = [
 
 export const ctaPrimary = {
 	label: 'Daftar Sekarang',
-	href: '#pendaftaran'
+	href: '/register'
 };
 
 export const ctaSecondary = {

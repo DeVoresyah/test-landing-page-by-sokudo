@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Container from './Container.svelte';
+	import Button from './Button.svelte';
 	import { reveal } from '../actions/reveal';
 
 	export type DarkFeatureItem = {
@@ -14,6 +15,8 @@
 		features: DarkFeatureItem[];
 		image?: string;
 		imageAlt?: string;
+		ctaLabel?: string;
+		ctaHref?: string;
 		id?: string;
 		class?: string;
 	};
@@ -25,6 +28,8 @@
 		features,
 		image = 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80',
 		imageAlt = 'Suasana belajar di SMA Harapan Bangsa',
+		ctaLabel,
+		ctaHref,
 		id,
 		class: className = ''
 	}: Props = $props();
@@ -77,6 +82,15 @@
 						</li>
 					{/each}
 				</ol>
+
+				{#if ctaLabel && ctaHref}
+					<div use:reveal={{ delay: 80 * features.length }}>
+						<Button href={ctaHref} variant="primary" size="lg">
+							{ctaLabel}
+							<span aria-hidden="true">→</span>
+						</Button>
+					</div>
+				{/if}
 			</div>
 
 			<div

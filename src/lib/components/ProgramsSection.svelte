@@ -1,6 +1,7 @@
 <script lang="ts">
 	import DarkFeatureBand, { type DarkFeatureItem } from './DarkFeatureBand.svelte';
 	import { programs } from '../data/programs';
+	import { ctaPrimary } from '../config/site';
 
 	const features: DarkFeatureItem[] = programs.map((p) => ({
 		title: `${p.name} — ${p.tagline}`,
@@ -15,4 +16,6 @@
 	description="Pilih penjurusan yang paling sesuai dengan kekuatan dan cita-cita putra-putri Anda — setiap program didukung guru spesialis, fasilitas memadai, dan jejaring industri."
 	{features}
 	imageAlt="Suasana belajar di laboratorium SMA Harapan Bangsa"
+	ctaLabel={ctaPrimary.label}
+	ctaHref={ctaPrimary.href}
 />
