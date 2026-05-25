@@ -1,0 +1,8 @@
+# Sokudo workspace compose file. Edit freely — the IDE never
+# overwrites this. The override file (docker-compose.sokudo.override.yml)
+# is generated automatically and shouldn't be edited by hand.
+services:
+  web:
+    image: nginx:1.27
+    expose:
+      - 80
